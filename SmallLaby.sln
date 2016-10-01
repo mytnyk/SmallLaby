@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallLabyServer", "SmallLabyServer\SmallLabyServer.csproj", "{7F1C821F-8C7E-40E7-AE14-8B46F6AA450B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallLabyPlayer", "SmallLabyPlayer\SmallLabyPlayer.csproj", "{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7F1C821F-8C7E-40E7-AE14-8B46F6AA450B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F1C821F-8C7E-40E7-AE14-8B46F6AA450B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F1C821F-8C7E-40E7-AE14-8B46F6AA450B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

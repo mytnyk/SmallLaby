@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7F1C821F-8C7E-40E7-AE14-8B46F6AA450B}</ProjectGuid>
+    <ProjectGuid>{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SmallLabyServer</RootNamespace>
-    <AssemblyName>SmallLabyServer</AssemblyName>
+    <RootNamespace>SmallLabyPlayer</RootNamespace>
+    <AssemblyName>SmallLabyPlayer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,16 +45,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game.cs" />
-    <Compile Include="ISmallLaby.cs" />
-    <Compile Include="Map.cs" />
-    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SmallLaby.cs" />
+    <Compile Include="Service References\ServiceRefSmallLaby\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Service References\ServiceRefSmallLaby\SmallLaby.wsdl" />
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceRefSmallLaby\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefSmallLaby\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefSmallLaby\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceRefSmallLaby\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

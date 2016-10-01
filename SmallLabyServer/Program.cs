@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel;
 
 namespace SmallLabyServer
 {
@@ -10,6 +7,13 @@ namespace SmallLabyServer
     {
         static void Main(string[] args)
         {
+            ServiceHost service_host = new ServiceHost(typeof(SmallLaby));
+            service_host.Open();
+
+            Console.WriteLine("Press return to finish server process.\n");
+            Console.ReadLine();
+
+            service_host.Close();
         }
     }
 }
