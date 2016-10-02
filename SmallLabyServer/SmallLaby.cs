@@ -47,9 +47,17 @@ namespace SmallLabyServer
 
         public void SetPosition(int x, int y, int player_id)
         {
+            if (x < 0 || y < 0 ||
+                x >= Game.Instance.Map.Width || y >= Game.Instance.Map.Height)
+                return;
+
             var player = Game.Instance.GetPlayer(player_id);
-            player.X = x;
-            player.Y = y;
+            int field = Game.Instance.Map.GetField(x, y);
+            if ((field & Map.Wall) == 0)
+            {
+                player.X = x;
+                player.Y = y;
+            }
         }
 
         public int GetMapWidth()

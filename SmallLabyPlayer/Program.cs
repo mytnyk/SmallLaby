@@ -64,6 +64,7 @@ namespace SmallLabyPlayer
 
                 client.SetPosition(x, y, player_id);
             }
+            client.RemovePlayer(player_id);
             client.Close();
         }
     }

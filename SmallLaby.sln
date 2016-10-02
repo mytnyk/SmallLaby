@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallLabyServer", "SmallLab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallLabyPlayer", "SmallLabyPlayer\SmallLabyPlayer.csproj", "{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmallLabyWpfPlayer", "SmallLabyWpfPlayer\SmallLabyWpfPlayer.csproj", "{DBFEB57F-9C42-4C65-B7A2-7F0C98B2680C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABC9AF4E-12F8-489F-88B6-8E389D5583EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBFEB57F-9C42-4C65-B7A2-7F0C98B2680C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBFEB57F-9C42-4C65-B7A2-7F0C98B2680C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBFEB57F-9C42-4C65-B7A2-7F0C98B2680C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBFEB57F-9C42-4C65-B7A2-7F0C98B2680C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
