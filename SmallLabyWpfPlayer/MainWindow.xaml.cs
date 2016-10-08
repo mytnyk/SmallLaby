@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using SmallLabyWpfPlayer.ServiceRefSmallLaby;
+using System.Windows.Media.Imaging;
 
 namespace SmallLabyWpfPlayer
 {
@@ -18,6 +19,8 @@ namespace SmallLabyWpfPlayer
         private int m_player_id;
 
         private const int size = 30;
+
+        private BitmapImage m_user_image;
 
         public MainWindow()
         {
@@ -33,17 +36,23 @@ namespace SmallLabyWpfPlayer
             timer.Start();
 
             this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
+
+            m_user_image = new BitmapImage();
+            m_user_image.BeginInit();
+            m_user_image.UriSource = new Uri("player.bmp", UriKind.Relative);
+            m_user_image.DecodePixelHeight = size;
+            m_user_image.DecodePixelWidth = size;
+            m_user_image.EndInit();
         }
 
         private void DrawPlayer(int x, int y)
         {
-            Ellipse newEllipse = new Ellipse();
-            newEllipse.Width = size;
-            newEllipse.Height = size;
-            newEllipse.Fill = Brushes.Blue;
-            Canvas.SetTop(newEllipse, y * size);
-            Canvas.SetLeft(newEllipse, x * size);
-            m_paint_canvas.Children.Add(newEllipse);
+            Image image = new Image();
+            Canvas.SetTop(image, y * size);
+            Canvas.SetLeft(image, x * size);
+
+            image.Source = m_user_image;
+            m_paint_canvas.Children.Add(image);
         }
         private void DrawMap()
         {
