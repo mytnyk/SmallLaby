@@ -5,6 +5,7 @@
       <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ISmallLaby_AddPlayer_InputMessage">
@@ -49,6 +50,12 @@
   <wsdl:message name="ISmallLaby_SetPosition_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetPositionResponse" />
   </wsdl:message>
+  <wsdl:message name="ISmallLaby_SetMovementStrategy_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMovementStrategy" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_SetMovementStrategy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMovementStrategyResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISmallLaby">
     <wsdl:operation name="AddPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/AddPlayer" message="tns:ISmallLaby_AddPlayer_InputMessage" />
@@ -77,6 +84,10 @@
     <wsdl:operation name="SetPosition">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/SetPosition" message="tns:ISmallLaby_SetPosition_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/SetPositionResponse" message="tns:ISmallLaby_SetPosition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMovementStrategy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategy" message="tns:ISmallLaby_SetMovementStrategy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse" message="tns:ISmallLaby_SetMovementStrategy_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISmallLaby" type="tns:ISmallLaby">
@@ -137,6 +148,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetPosition">
       <soap:operation soapAction="http://tempuri.org/ISmallLaby/SetPosition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMovementStrategy">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/SetMovementStrategy" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

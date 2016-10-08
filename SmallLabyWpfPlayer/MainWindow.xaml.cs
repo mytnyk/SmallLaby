@@ -14,14 +14,6 @@ namespace SmallLabyWpfPlayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const int UPWARDS = 8;
-        private const int DOWNWARDS = 2;
-        private const int TOLEFT = 4;
-        private const int TORIGHT = 6;
-
-        // Movement direction initialisation
-        private int m_direction = 0;
-
         private SmallLabyClient m_client;
         private int m_player_id;
 
@@ -66,53 +58,33 @@ namespace SmallLabyWpfPlayer
                 {
                     int field = map[y * width + x];
 
-                    Ellipse newEllipse = new Ellipse();
-                    newEllipse.Width = size;
-                    newEllipse.Height = size;
+                    var cell = new Rectangle();
+                    cell.Width = size;
+                    cell.Height = size;
 
                     switch (field)
                     {
                         case 1:
-                            newEllipse.Fill = Brushes.Yellow;
+                            cell.Fill = Brushes.Yellow;
                             break;
                         case 2:
-                            newEllipse.Fill = Brushes.Brown;
+                            cell.Fill = Brushes.Brown;
                             break;
                         default:
-                            newEllipse.Fill = Brushes.Red;
+                            cell.Fill = Brushes.Red;
                             break;
                     }
 
-                    Canvas.SetTop(newEllipse, y * size);
-                    Canvas.SetLeft(newEllipse, x * size);
-                    m_paint_canvas.Children.Add(newEllipse);
+                    Canvas.SetTop(cell, y * size);
+                    Canvas.SetLeft(cell, x * size);
+                    m_paint_canvas.Children.Add(cell);
                 }
             }
         }
 
-
         private void timer_Tick(object sender, EventArgs e)
         {
             int x, y;
-            x = m_client.GetPosition(m_player_id, out y);
-
-            switch (m_direction)
-            {
-                case DOWNWARDS:
-                    y++;
-                    break;
-                case UPWARDS:
-                    y--;
-                    break;
-                case TOLEFT:
-                    x--;
-                    break;
-                case TORIGHT:
-                    x++;
-                    break;
-            }
-
-            m_client.SetPosition(x, y, m_player_id);
             x = m_client.GetPosition(m_player_id, out y);
 
             DrawMap();
@@ -125,16 +97,22 @@ namespace SmallLabyWpfPlayer
             switch (e.Key)
             {
                 case Key.Down:
-                    m_direction = DOWNWARDS;
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.MoveDown);
                     break;
                 case Key.Up:
-                    m_direction = UPWARDS;
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.MoveUp);
                     break;
                 case Key.Left:
-                    m_direction = TOLEFT;
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.MoveLeft);
                     break;
                 case Key.Right:
-                    m_direction = TORIGHT;
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.MoveRight);
+                    break;
+                case Key.Space:
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.StandStill);
+                    break;
+                case Key.R:
+                    m_client.SetMovementStrategy(m_player_id, MovementStrategy.RandomDirection);
                     break;
             }
         }

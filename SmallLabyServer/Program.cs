@@ -14,6 +14,7 @@ namespace SmallLabyServer
             Console.ReadLine();
 
             service_host.Close();
+            Game.Instance.GameOver = true;
         }
     }
 }

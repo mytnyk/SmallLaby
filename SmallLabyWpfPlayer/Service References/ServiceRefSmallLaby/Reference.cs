@@ -9,7 +9,31 @@
 //------------------------------------------------------------------------------
 
 namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
+    using System.Runtime.Serialization;
     
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MovementStrategy", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    public enum MovementStrategy : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        StandStill = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MoveLeft = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MoveRight = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MoveUp = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        MoveDown = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        RandomDirection = 5,
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceRefSmallLaby.ISmallLaby")]
@@ -53,10 +77,16 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         System.Threading.Tasks.Task<SmallLabyWpfPlayer.ServiceRefSmallLaby.GetPositionResponse> GetPositionAsync(SmallLabyWpfPlayer.ServiceRefSmallLaby.GetPositionRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetPosition", ReplyAction="http://tempuri.org/ISmallLaby/SetPositionResponse")]
-        void SetPosition(int x, int y, int player_id);
+        void SetPosition(int player_id, int x, int y);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetPosition", ReplyAction="http://tempuri.org/ISmallLaby/SetPositionResponse")]
-        System.Threading.Tasks.Task SetPositionAsync(int x, int y, int player_id);
+        System.Threading.Tasks.Task SetPositionAsync(int player_id, int x, int y);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetMovementStrategy", ReplyAction="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse")]
+        void SetMovementStrategy(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetMovementStrategy", ReplyAction="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse")]
+        System.Threading.Tasks.Task SetMovementStrategyAsync(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -179,12 +209,20 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
             return base.Channel.GetPositionAsync(request);
         }
         
-        public void SetPosition(int x, int y, int player_id) {
-            base.Channel.SetPosition(x, y, player_id);
+        public void SetPosition(int player_id, int x, int y) {
+            base.Channel.SetPosition(player_id, x, y);
         }
         
-        public System.Threading.Tasks.Task SetPositionAsync(int x, int y, int player_id) {
-            return base.Channel.SetPositionAsync(x, y, player_id);
+        public System.Threading.Tasks.Task SetPositionAsync(int player_id, int x, int y) {
+            return base.Channel.SetPositionAsync(player_id, x, y);
+        }
+        
+        public void SetMovementStrategy(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy) {
+            base.Channel.SetMovementStrategy(player_id, strategy);
+        }
+        
+        public System.Threading.Tasks.Task SetMovementStrategyAsync(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy) {
+            return base.Channel.SetMovementStrategyAsync(player_id, strategy);
         }
     }
 }

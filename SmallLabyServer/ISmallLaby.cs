@@ -2,6 +2,16 @@
 
 namespace SmallLabyServer
 {
+    enum MovementStrategy
+    {
+        StandStill,
+        MoveLeft,
+        MoveRight,
+        MoveUp,
+        MoveDown,
+        RandomDirection,
+    }
+
     [ServiceContract]
     interface ISmallLaby
     {
@@ -24,6 +34,9 @@ namespace SmallLabyServer
         void GetPosition(int player_id, out int x, out int y);
 
         [OperationContract]
-        void SetPosition(int x, int y, int player_id);
+        void SetPosition(int player_id, int x, int y);
+
+        [OperationContract]
+        void SetMovementStrategy(int player_id, MovementStrategy strategy);
     }
 }

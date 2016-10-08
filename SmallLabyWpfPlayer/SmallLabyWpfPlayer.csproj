@@ -108,6 +108,9 @@
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.GetPositionResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

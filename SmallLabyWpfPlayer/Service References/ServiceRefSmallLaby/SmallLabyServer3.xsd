@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SmallLabyServer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SmallLabyServer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="MovementStrategy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StandStill" />
+      <xs:enumeration value="MoveLeft" />
+      <xs:enumeration value="MoveRight" />
+      <xs:enumeration value="MoveUp" />
+      <xs:enumeration value="MoveDown" />
+      <xs:enumeration value="RandomDirection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MovementStrategy" nillable="true" type="tns:MovementStrategy" />
+</xs:schema>

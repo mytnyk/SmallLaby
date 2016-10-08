@@ -62,7 +62,7 @@ namespace SmallLabyPlayer
                 if (user_wants_to_exit)
                     break;
 
-                client.SetPosition(x, y, player_id);
+                client.SetPosition(player_id, x, y);
             }
             client.RemovePlayer(player_id);
             client.Close();
