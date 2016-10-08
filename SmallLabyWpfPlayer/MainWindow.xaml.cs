@@ -20,7 +20,10 @@ namespace SmallLabyWpfPlayer
 
         private const int size = 30;
 
-        private BitmapImage m_user_image;
+        private BitmapImage m_player_image;
+        private BitmapImage m_road_image;
+        private BitmapImage m_wall_image;
+        private BitmapImage m_enemy_image;
 
         public MainWindow()
         {
@@ -37,12 +40,33 @@ namespace SmallLabyWpfPlayer
 
             this.KeyDown += new KeyEventHandler(OnButtonKeyDown);
 
-            m_user_image = new BitmapImage();
-            m_user_image.BeginInit();
-            m_user_image.UriSource = new Uri("player.bmp", UriKind.Relative);
-            m_user_image.DecodePixelHeight = size;
-            m_user_image.DecodePixelWidth = size;
-            m_user_image.EndInit();
+            m_player_image = new BitmapImage();
+            m_player_image.BeginInit();
+            m_player_image.UriSource = new Uri("images/aze1.bmp", UriKind.Relative);
+            m_player_image.DecodePixelHeight = size;
+            m_player_image.DecodePixelWidth = size;
+            m_player_image.EndInit();
+
+            m_road_image = new BitmapImage();
+            m_road_image.BeginInit();
+            m_road_image.UriSource = new Uri("images/road.bmp", UriKind.Relative);
+            m_road_image.DecodePixelHeight = size;
+            m_road_image.DecodePixelWidth = size;
+            m_road_image.EndInit();
+
+            m_wall_image = new BitmapImage();
+            m_wall_image.BeginInit();
+            m_wall_image.UriSource = new Uri("images/mud.bmp", UriKind.Relative);
+            m_wall_image.DecodePixelHeight = size;
+            m_wall_image.DecodePixelWidth = size;
+            m_wall_image.EndInit();
+
+            m_enemy_image = new BitmapImage();
+            m_enemy_image.BeginInit();
+            m_enemy_image.UriSource = new Uri("images/tree.bmp", UriKind.Relative);
+            m_enemy_image.DecodePixelHeight = size;
+            m_enemy_image.DecodePixelWidth = size;
+            m_enemy_image.EndInit();
         }
 
         private void DrawPlayer(int x, int y)
@@ -51,7 +75,37 @@ namespace SmallLabyWpfPlayer
             Canvas.SetTop(image, y * size);
             Canvas.SetLeft(image, x * size);
 
-            image.Source = m_user_image;
+            image.Source = m_player_image;
+            m_paint_canvas.Children.Add(image);
+        }
+
+        private void DrawWall(int x, int y)
+        {
+            Image image = new Image();
+            Canvas.SetTop(image, y * size);
+            Canvas.SetLeft(image, x * size);
+
+            image.Source = m_wall_image;
+            m_paint_canvas.Children.Add(image);
+        }
+
+        private void DrawRoad(int x, int y)
+        {
+            Image image = new Image();
+            Canvas.SetTop(image, y * size);
+            Canvas.SetLeft(image, x * size);
+
+            image.Source = m_road_image;
+            m_paint_canvas.Children.Add(image);
+        }
+
+        private void DrawEnemy(int x, int y)
+        {
+            Image image = new Image();
+            Canvas.SetTop(image, y * size);
+            Canvas.SetLeft(image, x * size);
+
+            image.Source = m_enemy_image;
             m_paint_canvas.Children.Add(image);
         }
         private void DrawMap()
@@ -67,26 +121,18 @@ namespace SmallLabyWpfPlayer
                 {
                     int field = map[y * width + x];
 
-                    var cell = new Rectangle();
-                    cell.Width = size;
-                    cell.Height = size;
-
                     switch (field)
                     {
                         case 1:
-                            cell.Fill = Brushes.Yellow;
+                            DrawRoad(x, y);
                             break;
                         case 2:
-                            cell.Fill = Brushes.Brown;
+                            DrawWall(x, y);
                             break;
-                        default:
-                            cell.Fill = Brushes.Red;
+                        case 9:
+                            DrawEnemy(x, y);
                             break;
                     }
-
-                    Canvas.SetTop(cell, y * size);
-                    Canvas.SetLeft(cell, x * size);
-                    m_paint_canvas.Children.Add(cell);
                 }
             }
         }
