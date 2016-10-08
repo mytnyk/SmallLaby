@@ -30,7 +30,9 @@
   </xs:element>
   <xs:element name="GetMap">
     <xs:complexType>
-      <xs:sequence />
+      <xs:sequence>
+        <xs:element minOccurs="0" name="player_id" type="xs:int" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetMapResponse">

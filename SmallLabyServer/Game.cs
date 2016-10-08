@@ -63,10 +63,11 @@ namespace SmallLabyServer
             var random_generator = new Random();
             while (!GameOver)
             {
-                Thread.Sleep(500); // todo add speed
                 Player player;
                 if (!TryGetPlayer(player_id, out player))
                     return;
+
+                Thread.Sleep((int)(1000 / player.Speed)); // todo add speed
 
                 var x = player.X;
                 var y = player.Y;

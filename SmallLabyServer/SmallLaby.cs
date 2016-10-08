@@ -19,15 +19,18 @@ namespace SmallLabyServer
             return Game.Instance.AddPlayer(name);
         }
 
-        public int[] GetMap()
+        public int[] GetMap(int player_id)
         {
+            var callee = Game.Instance.GetPlayer(player_id);
             var fields = Game.Instance.Map.GetFields();
             var copy = fields.ToArray();
 
             foreach (var player in Game.Instance.GetPlayers())
             {
+                if (player == callee)
+                    continue; // do not put player himself onto map
                 int index = player.Y * Game.Instance.Map.Width + player.X;
-                copy[index] += Map.Play;
+                copy[index] += Map.Enemy;
             }
 
             return copy;

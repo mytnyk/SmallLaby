@@ -119,6 +119,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\player.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\aze1.bmp" />
+    <Resource Include="images\mud.bmp" />
+    <Resource Include="images\road.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\tree.bmp" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -138,17 +149,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\player.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\aze1.bmp" />
-    <Resource Include="images\mud.bmp" />
-    <Resource Include="images\road.bmp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\tree.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

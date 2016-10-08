@@ -52,10 +52,10 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         System.Threading.Tasks.Task RemovePlayerAsync(int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMap", ReplyAction="http://tempuri.org/ISmallLaby/GetMapResponse")]
-        int[] GetMap();
+        int[] GetMap(int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMap", ReplyAction="http://tempuri.org/ISmallLaby/GetMapResponse")]
-        System.Threading.Tasks.Task<int[]> GetMapAsync();
+        System.Threading.Tasks.Task<int[]> GetMapAsync(int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMapWidth", ReplyAction="http://tempuri.org/ISmallLaby/GetMapWidthResponse")]
         int GetMapWidth();
@@ -168,12 +168,12 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
             return base.Channel.RemovePlayerAsync(player_id);
         }
         
-        public int[] GetMap() {
-            return base.Channel.GetMap();
+        public int[] GetMap(int player_id) {
+            return base.Channel.GetMap(player_id);
         }
         
-        public System.Threading.Tasks.Task<int[]> GetMapAsync() {
-            return base.Channel.GetMapAsync();
+        public System.Threading.Tasks.Task<int[]> GetMapAsync(int player_id) {
+            return base.Channel.GetMapAsync(player_id);
         }
         
         public int GetMapWidth() {

@@ -6,8 +6,8 @@ namespace SmallLabyServer
     {
         static public int Road = 0x01; // 0001
         static public int Wall = 0x02; // 0010
-        static public int Mons = 0x04; // 0100
-        static public int Play = 0x08; // 1000
+        static public int Monster = 0x04; // 0100
+        static public int Enemy = 0x08; // 1000
 
         private int[] m_map =
         {

@@ -22,7 +22,7 @@ namespace SmallLabyServer
         void RemovePlayer(int player_id);
 
         [OperationContract]
-        int[] GetMap();
+        int[] GetMap(int player_id);
 
         [OperationContract]
         int GetMapWidth();

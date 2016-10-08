@@ -31,7 +31,7 @@ namespace SmallLabyPlayer
 
             while (true)
             {
-                int[] map = client.GetMap();
+                int[] map = client.GetMap(player_id);
 
                 ShowMap(map, client.GetMapWidth(), client.GetMapHeight());
 

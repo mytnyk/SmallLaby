@@ -18,19 +18,21 @@ namespace SmallLabyWpfPlayer
         private SmallLabyClient m_client;
         private int m_player_id;
 
-        private const int size = 30;
+        private const int size = 50;
 
         private BitmapImage m_player_image;
         private BitmapImage m_road_image;
         private BitmapImage m_wall_image;
         private BitmapImage m_enemy_image;
 
+        private string player_name = "alex";
+
         public MainWindow()
         {
             InitializeComponent();
 
             m_client = new SmallLabyClient();
-            m_player_id = m_client.AddPlayer("alex");
+            m_player_id = m_client.AddPlayer(player_name);
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
@@ -43,8 +45,8 @@ namespace SmallLabyWpfPlayer
             m_player_image = new BitmapImage();
             m_player_image.BeginInit();
             m_player_image.UriSource = new Uri("images/aze1.bmp", UriKind.Relative);
-            m_player_image.DecodePixelHeight = size;
-            m_player_image.DecodePixelWidth = size;
+            m_player_image.DecodePixelHeight = (int)(size*0.75);
+            m_player_image.DecodePixelWidth = (int)(size*0.75);
             m_player_image.EndInit();
 
             m_road_image = new BitmapImage();
@@ -63,7 +65,7 @@ namespace SmallLabyWpfPlayer
 
             m_enemy_image = new BitmapImage();
             m_enemy_image.BeginInit();
-            m_enemy_image.UriSource = new Uri("images/tree.bmp", UriKind.Relative);
+            m_enemy_image.UriSource = new Uri("images/player.bmp", UriKind.Relative);
             m_enemy_image.DecodePixelHeight = size;
             m_enemy_image.DecodePixelWidth = size;
             m_enemy_image.EndInit();
@@ -74,9 +76,16 @@ namespace SmallLabyWpfPlayer
             Image image = new Image();
             Canvas.SetTop(image, y * size);
             Canvas.SetLeft(image, x * size);
-
             image.Source = m_player_image;
             m_paint_canvas.Children.Add(image);
+
+            TextBlock name = new TextBlock();
+            name.Text = player_name;
+            name.Foreground = Brushes.Aqua;
+            Canvas.SetTop(name, y * size);
+            Canvas.SetLeft(name, x * size);
+
+            m_paint_canvas.Children.Add(name);
         }
 
         private void DrawWall(int x, int y)
@@ -110,7 +119,7 @@ namespace SmallLabyWpfPlayer
         }
         private void DrawMap()
         {
-            int[] map = m_client.GetMap();
+            int[] map = m_client.GetMap(m_player_id);
             int width = m_client.GetMapWidth();
             int height = m_client.GetMapHeight();
 
