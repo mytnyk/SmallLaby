@@ -25,6 +25,10 @@ namespace SmallLabyServer
             int player_id = m_current_player_id;
             m_players[player_id] = p;
             m_current_player_id++;
+
+            var move_player_thread = new Thread(MovePlayer);
+            move_player_thread.Start(player_id);
+
             return player_id;
         }
 
@@ -38,68 +42,72 @@ namespace SmallLabyServer
             return m_players[player_id];
         }
 
+        public bool TryGetPlayer(int player_id, out Player player)
+        {
+            return m_players.TryGetValue(player_id, out player);
+        }
+
         private Game()
         {
-            var move_playes_thread = new Thread(MovePlayers);
-            move_playes_thread.Start();
+            
         }
 
         public static Game Instance { get; } = new Game();
 
-        private static void MovePlayers()
+        private static void MovePlayer(object player_id)
         {
-            Instance._MovePlayers();
+            Instance._MovePlayer((int)player_id);
         }
-        private void _MovePlayers()
+        private void _MovePlayer(int player_id)
         {
             var random_generator = new Random();
             while (!GameOver)
             {
-                Thread.Sleep(500);
-                var players = GetPlayers();
-                foreach (var player in players)
+                Thread.Sleep(500); // todo add speed
+                Player player;
+                if (!TryGetPlayer(player_id, out player))
+                    return;
+
+                var x = player.X;
+                var y = player.Y;
+                switch (player.MovementStrategy)
                 {
-                    var x = player.X;
-                    var y = player.Y;
-                    switch (player.MovementStrategy)
-                    {
-                        case MovementStrategy.StandStill:
-                            break;
-                        case MovementStrategy.MoveDown:
-                            y++;
-                            break;
-                        case MovementStrategy.MoveUp:
-                            y--;
-                            break;
-                        case MovementStrategy.MoveLeft:
-                            x--;
-                            break;
-                        case MovementStrategy.MoveRight:
-                            x++;
-                            break;
-                        case MovementStrategy.RandomDirection:
-                            int random_move = random_generator.Next(5);
-                            switch (random_move)
-                            {
-                                case 0:
-                                    y++;
-                                    break;
-                                case 1:
-                                    y--;
-                                    break;
-                                case 2:
-                                    x++;
-                                    break;
-                                case 3:
-                                    x--;
-                                    break;
-                                case 4:
-                                    break;
-                            }
-                            break;
-                    }
-                    SetPosition(player, x, y);
+                    case MovementStrategy.StandStill:
+                        break;
+                    case MovementStrategy.MoveDown:
+                        y++;
+                        break;
+                    case MovementStrategy.MoveUp:
+                        y--;
+                        break;
+                    case MovementStrategy.MoveLeft:
+                        x--;
+                        break;
+                    case MovementStrategy.MoveRight:
+                        x++;
+                        break;
+                    case MovementStrategy.RandomDirection:
+                        int random_move = random_generator.Next(5);
+                        switch (random_move)
+                        {
+                            case 0:
+                                y++;
+                                break;
+                            case 1:
+                                y--;
+                                break;
+                            case 2:
+                                x++;
+                                break;
+                            case 3:
+                                x--;
+                                break;
+                            case 4:
+                                break;
+                        }
+                        break;
                 }
+                SetPosition(player, x, y);
             }
         }
 
