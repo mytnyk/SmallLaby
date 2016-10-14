@@ -10,7 +10,191 @@
 
 namespace SmallLabyPlayer.ServiceRefSmallLaby {
     using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TerrainType", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    public enum TerrainType : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Grass = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Forest = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Water = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Mountain = 3,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerInfo", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    [System.SerializableAttribute()]
+    public partial struct PlayerInfo : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ItemInfo", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    [System.SerializableAttribute()]
+    public partial struct ItemInfo : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SmallLabyPlayer.ServiceRefSmallLaby.Item ItemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SmallLabyPlayer.ServiceRefSmallLaby.Item Item {
+            get {
+                return this.ItemField;
+            }
+            set {
+                if ((this.ItemField.Equals(value) != true)) {
+                    this.ItemField = value;
+                    this.RaisePropertyChanged("Item");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Item", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    public enum Item : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Gold = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Bonus = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Exit = 2,
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MovementStrategy", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
@@ -52,10 +236,22 @@ namespace SmallLabyPlayer.ServiceRefSmallLaby {
         System.Threading.Tasks.Task RemovePlayerAsync(int player_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMap", ReplyAction="http://tempuri.org/ISmallLaby/GetMapResponse")]
-        int[] GetMap(int player_id);
+        SmallLabyPlayer.ServiceRefSmallLaby.TerrainType[] GetMap();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMap", ReplyAction="http://tempuri.org/ISmallLaby/GetMapResponse")]
-        System.Threading.Tasks.Task<int[]> GetMapAsync(int player_id);
+        System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.TerrainType[]> GetMapAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetPlayers", ReplyAction="http://tempuri.org/ISmallLaby/GetPlayersResponse")]
+        SmallLabyPlayer.ServiceRefSmallLaby.PlayerInfo[] GetPlayers();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetPlayers", ReplyAction="http://tempuri.org/ISmallLaby/GetPlayersResponse")]
+        System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.PlayerInfo[]> GetPlayersAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetItems", ReplyAction="http://tempuri.org/ISmallLaby/GetItemsResponse")]
+        SmallLabyPlayer.ServiceRefSmallLaby.ItemInfo[] GetItems();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetItems", ReplyAction="http://tempuri.org/ISmallLaby/GetItemsResponse")]
+        System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.ItemInfo[]> GetItemsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMapWidth", ReplyAction="http://tempuri.org/ISmallLaby/GetMapWidthResponse")]
         int GetMapWidth();
@@ -69,60 +265,11 @@ namespace SmallLabyPlayer.ServiceRefSmallLaby {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMapHeight", ReplyAction="http://tempuri.org/ISmallLaby/GetMapHeightResponse")]
         System.Threading.Tasks.Task<int> GetMapHeightAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetPosition", ReplyAction="http://tempuri.org/ISmallLaby/GetPositionResponse")]
-        SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse GetPosition(SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest request);
-        
-        // CODEGEN: Generating message contract since the operation has multiple return values.
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetPosition", ReplyAction="http://tempuri.org/ISmallLaby/GetPositionResponse")]
-        System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse> GetPositionAsync(SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetPosition", ReplyAction="http://tempuri.org/ISmallLaby/SetPositionResponse")]
-        void SetPosition(int player_id, int x, int y);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetPosition", ReplyAction="http://tempuri.org/ISmallLaby/SetPositionResponse")]
-        System.Threading.Tasks.Task SetPositionAsync(int player_id, int x, int y);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetMovementStrategy", ReplyAction="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse")]
         void SetMovementStrategy(int player_id, SmallLabyPlayer.ServiceRefSmallLaby.MovementStrategy strategy);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetMovementStrategy", ReplyAction="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse")]
         System.Threading.Tasks.Task SetMovementStrategyAsync(int player_id, SmallLabyPlayer.ServiceRefSmallLaby.MovementStrategy strategy);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetPosition", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetPositionRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public int player_id;
-        
-        public GetPositionRequest() {
-        }
-        
-        public GetPositionRequest(int player_id) {
-            this.player_id = player_id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="GetPositionResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
-    public partial class GetPositionResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
-        public int x;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
-        public int y;
-        
-        public GetPositionResponse() {
-        }
-        
-        public GetPositionResponse(int x, int y) {
-            this.x = x;
-            this.y = y;
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -168,12 +315,28 @@ namespace SmallLabyPlayer.ServiceRefSmallLaby {
             return base.Channel.RemovePlayerAsync(player_id);
         }
         
-        public int[] GetMap(int player_id) {
-            return base.Channel.GetMap(player_id);
+        public SmallLabyPlayer.ServiceRefSmallLaby.TerrainType[] GetMap() {
+            return base.Channel.GetMap();
         }
         
-        public System.Threading.Tasks.Task<int[]> GetMapAsync(int player_id) {
-            return base.Channel.GetMapAsync(player_id);
+        public System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.TerrainType[]> GetMapAsync() {
+            return base.Channel.GetMapAsync();
+        }
+        
+        public SmallLabyPlayer.ServiceRefSmallLaby.PlayerInfo[] GetPlayers() {
+            return base.Channel.GetPlayers();
+        }
+        
+        public System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.PlayerInfo[]> GetPlayersAsync() {
+            return base.Channel.GetPlayersAsync();
+        }
+        
+        public SmallLabyPlayer.ServiceRefSmallLaby.ItemInfo[] GetItems() {
+            return base.Channel.GetItems();
+        }
+        
+        public System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.ItemInfo[]> GetItemsAsync() {
+            return base.Channel.GetItemsAsync();
         }
         
         public int GetMapWidth() {
@@ -190,31 +353,6 @@ namespace SmallLabyPlayer.ServiceRefSmallLaby {
         
         public System.Threading.Tasks.Task<int> GetMapHeightAsync() {
             return base.Channel.GetMapHeightAsync();
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse SmallLabyPlayer.ServiceRefSmallLaby.ISmallLaby.GetPosition(SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest request) {
-            return base.Channel.GetPosition(request);
-        }
-        
-        public int GetPosition(int player_id, out int y) {
-            SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest inValue = new SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest();
-            inValue.player_id = player_id;
-            SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse retVal = ((SmallLabyPlayer.ServiceRefSmallLaby.ISmallLaby)(this)).GetPosition(inValue);
-            y = retVal.y;
-            return retVal.x;
-        }
-        
-        public System.Threading.Tasks.Task<SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse> GetPositionAsync(SmallLabyPlayer.ServiceRefSmallLaby.GetPositionRequest request) {
-            return base.Channel.GetPositionAsync(request);
-        }
-        
-        public void SetPosition(int player_id, int x, int y) {
-            base.Channel.SetPosition(player_id, x, y);
-        }
-        
-        public System.Threading.Tasks.Task SetPositionAsync(int player_id, int x, int y) {
-            return base.Channel.SetPositionAsync(player_id, x, y);
         }
         
         public void SetMovementStrategy(int player_id, SmallLabyPlayer.ServiceRefSmallLaby.MovementStrategy strategy) {

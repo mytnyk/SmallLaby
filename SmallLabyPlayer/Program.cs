@@ -8,7 +8,22 @@ namespace SmallLabyPlayer
 {
     class Program
     {
-        static void ShowMap(int[] map, int width, int height)
+        class FieldWithPlayer
+        {
+            public TerrainType Terrain;
+            public bool HasPlayer;
+            public int PlayerId;
+            public override string ToString()
+            {
+                string text = Terrain.ToString();
+                if (HasPlayer)
+                {
+                    text += "(" + PlayerId + ")";
+                }
+                return text;
+            }
+        }
+        static void ShowMap(FieldWithPlayer[] map_with_players, int width, int height)
         {
             Console.Clear();
             var sb = new StringBuilder();
@@ -16,7 +31,8 @@ namespace SmallLabyPlayer
             {
                 for (int x = 0; x < width; x++)
                 {
-                    sb.Append(map[y * width + x]);
+                    var field = map_with_players[y * width + x];
+                    sb.Append(field);
                     sb.Append('\t');
                 }
                 sb.Append("\n");
@@ -29,14 +45,23 @@ namespace SmallLabyPlayer
 
             int player_id = client.AddPlayer("alex");
 
+            var map = client.GetMap();
+            var width = client.GetMapWidth();
+            var height = client.GetMapHeight();
             while (true)
             {
-                int[] map = client.GetMap(player_id);
+                var players = client.GetPlayers();
 
-                ShowMap(map, client.GetMapWidth(), client.GetMapHeight());
+                var map_with_players = map.Select(t => new FieldWithPlayer { Terrain = t, HasPlayer = false, PlayerId = 0 }).ToArray();
 
-                int x, y;
-                x = client.GetPosition(player_id, out y);
+                foreach (var player in players)
+                {
+                    var field = map_with_players[player.X + player.Y * width];
+                    field.HasPlayer = true;
+                    field.PlayerId = player.Id;
+                }
+
+                ShowMap(map_with_players, width, height);
 
                 bool user_wants_to_exit = false;
                 var key = Console.ReadKey(true);
@@ -47,22 +72,20 @@ namespace SmallLabyPlayer
                         user_wants_to_exit = true;
                         break;
                     case ConsoleKey.LeftArrow:
-                        x--;
+                        client.SetMovementStrategy(player_id, MovementStrategy.MoveLeft);
                         break;
                     case ConsoleKey.RightArrow:
-                        x++;
+                        client.SetMovementStrategy(player_id, MovementStrategy.MoveRight);
                         break;
                     case ConsoleKey.DownArrow:
-                        y++;
+                        client.SetMovementStrategy(player_id, MovementStrategy.MoveDown);
                         break;
                     case ConsoleKey.UpArrow:
-                        y--;
+                        client.SetMovementStrategy(player_id, MovementStrategy.MoveUp);
                         break;
                 }
                 if (user_wants_to_exit)
                     break;
-
-                client.SetPosition(player_id, x, y);
             }
             client.RemovePlayer(player_id);
             client.Close();

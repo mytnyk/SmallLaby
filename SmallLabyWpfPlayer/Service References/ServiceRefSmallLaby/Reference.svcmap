@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="482cfa1e-01a9-42a6-bc5b-0401f2a63cb1" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="3728ecbb-ff9e-49a7-8d4f-71163e2f68ad" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,11 @@
     <MetadataSource Address="http://188.231.153.190:8080/SmallLabyServer" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="SmallLabyServer.xsd" MetadataType="Schema" ID="40ad8329-8833-462c-bf71-35601fe1b6be" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd0" />
-    <MetadataFile FileName="SmallLabyServer1.xsd" MetadataType="Schema" ID="f826155f-67eb-4fa2-a4d0-820d51258586" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd2" />
-    <MetadataFile FileName="SmallLaby.wsdl" MetadataType="Wsdl" ID="c4246fbe-5d41-4ef0-ac54-f4b0c7be0650" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?wsdl" />
-    <MetadataFile FileName="SmallLabyServer2.xsd" MetadataType="Schema" ID="43a1c76f-46fd-4aab-a4d0-daf0041e7ff0" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd1" />
-    <MetadataFile FileName="SmallLabyServer.disco" MetadataType="Disco" ID="f8529b24-340b-436f-8195-c6bf5b0cdca3" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?disco" />
-    <MetadataFile FileName="SmallLabyServer3.xsd" MetadataType="Schema" ID="0df7da37-aa9e-4905-b4e2-e88406fbc069" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd3" />
+    <MetadataFile FileName="SmallLaby.wsdl" MetadataType="Wsdl" ID="cc186618-ba83-4ace-86d8-50c8711b6967" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?wsdl" />
+    <MetadataFile FileName="SmallLabyServer.xsd" MetadataType="Schema" ID="7448eb19-79a8-4fd1-bc3b-94158c9590f3" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd1" />
+    <MetadataFile FileName="SmallLabyServer.disco" MetadataType="Disco" ID="e1341822-f29c-4b95-82d6-1d32ab5e0338" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?disco" />
+    <MetadataFile FileName="SmallLabyServer1.xsd" MetadataType="Schema" ID="bafb85f2-c37e-4c25-9eff-fa4b8b1b357b" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd2" />
+    <MetadataFile FileName="SmallLabyServer2.xsd" MetadataType="Schema" ID="904e50be-b5f3-4dcb-9464-da0d88242532" SourceId="1" SourceUrl="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

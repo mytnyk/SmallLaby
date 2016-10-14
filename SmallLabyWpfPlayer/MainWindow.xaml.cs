@@ -17,12 +17,14 @@ namespace SmallLabyWpfPlayer
     {
         private SmallLabyClient m_client;
         private int m_player_id;
-
+        private TerrainType[] m_map;
+        private int m_map_width;
+        private int m_map_height;
         private const int size = 50;
 
         private BitmapImage m_player_image;
-        private BitmapImage m_road_image;
-        private BitmapImage m_wall_image;
+        private BitmapImage m_grass_image;
+        private BitmapImage m_mountain_image;
         private BitmapImage m_enemy_image;
 
         private string player_name = "alex";
@@ -33,6 +35,10 @@ namespace SmallLabyWpfPlayer
 
             m_client = new SmallLabyClient();
             m_player_id = m_client.AddPlayer(player_name);
+
+            m_map = m_client.GetMap();
+            m_map_width = m_client.GetMapWidth();
+            m_map_height = m_client.GetMapHeight();
 
             DispatcherTimer timer = new DispatcherTimer();
             timer.Tick += new EventHandler(timer_Tick);
@@ -49,19 +55,19 @@ namespace SmallLabyWpfPlayer
             m_player_image.DecodePixelWidth = (int)(size*0.75);
             m_player_image.EndInit();
 
-            m_road_image = new BitmapImage();
-            m_road_image.BeginInit();
-            m_road_image.UriSource = new Uri("images/road.bmp", UriKind.Relative);
-            m_road_image.DecodePixelHeight = size;
-            m_road_image.DecodePixelWidth = size;
-            m_road_image.EndInit();
+            m_grass_image = new BitmapImage();
+            m_grass_image.BeginInit();
+            m_grass_image.UriSource = new Uri("images/grass.bmp", UriKind.Relative);
+            m_grass_image.DecodePixelHeight = size;
+            m_grass_image.DecodePixelWidth = size;
+            m_grass_image.EndInit();
 
-            m_wall_image = new BitmapImage();
-            m_wall_image.BeginInit();
-            m_wall_image.UriSource = new Uri("images/mud.bmp", UriKind.Relative);
-            m_wall_image.DecodePixelHeight = size;
-            m_wall_image.DecodePixelWidth = size;
-            m_wall_image.EndInit();
+            m_mountain_image = new BitmapImage();
+            m_mountain_image.BeginInit();
+            m_mountain_image.UriSource = new Uri("images/mud.bmp", UriKind.Relative);
+            m_mountain_image.DecodePixelHeight = size;
+            m_mountain_image.DecodePixelWidth = size;
+            m_mountain_image.EndInit();
 
             m_enemy_image = new BitmapImage();
             m_enemy_image.BeginInit();
@@ -71,13 +77,23 @@ namespace SmallLabyWpfPlayer
             m_enemy_image.EndInit();
         }
 
-        private void DrawPlayer(int x, int y)
+        private void DrawPlayers()
         {
-            Image image = new Image();
-            Canvas.SetTop(image, y * size);
-            Canvas.SetLeft(image, x * size);
-            image.Source = m_player_image;
-            m_paint_canvas.Children.Add(image);
+            var players = m_client.GetPlayers();
+            foreach (var player in players)
+            {
+                if (player.Id != m_player_id)
+                {
+                    DrawEnemy(player.X, player.Y, player.Id);
+                }
+                else
+                    DrawMe(player.X, player.Y);
+            }
+        }
+
+        private void DrawMe(int x, int y)
+        {
+            DrawBitmapImage(x, y, m_player_image);
 
             TextBlock name = new TextBlock();
             name.Text = player_name;
@@ -88,58 +104,53 @@ namespace SmallLabyWpfPlayer
             m_paint_canvas.Children.Add(name);
         }
 
-        private void DrawWall(int x, int y)
+        private void DrawBitmapImage(int x, int y, BitmapImage image_source)
         {
             Image image = new Image();
             Canvas.SetTop(image, y * size);
             Canvas.SetLeft(image, x * size);
 
-            image.Source = m_wall_image;
+            image.Source = image_source;
             m_paint_canvas.Children.Add(image);
         }
 
-        private void DrawRoad(int x, int y)
+        private void DrawMountain(int x, int y)
         {
-            Image image = new Image();
-            Canvas.SetTop(image, y * size);
-            Canvas.SetLeft(image, x * size);
-
-            image.Source = m_road_image;
-            m_paint_canvas.Children.Add(image);
+            DrawBitmapImage(x, y, m_mountain_image);
         }
 
-        private void DrawEnemy(int x, int y)
+        private void DrawGrass(int x, int y)
         {
-            Image image = new Image();
-            Canvas.SetTop(image, y * size);
-            Canvas.SetLeft(image, x * size);
+            DrawBitmapImage(x, y, m_grass_image);
+        }
 
-            image.Source = m_enemy_image;
-            m_paint_canvas.Children.Add(image);
+        private void DrawEnemy(int x, int y, int id)
+        {
+            DrawBitmapImage(x, y, m_enemy_image);
+
+            TextBlock name = new TextBlock();
+            name.Text = id.ToString();
+            name.Foreground = Brushes.Red;
+            Canvas.SetTop(name, y * size);
+            Canvas.SetLeft(name, x * size);
+
+            m_paint_canvas.Children.Add(name);
         }
         private void DrawMap()
         {
-            int[] map = m_client.GetMap(m_player_id);
-            int width = m_client.GetMapWidth();
-            int height = m_client.GetMapHeight();
-
-            m_paint_canvas.Children.Clear();
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < m_map_height; y++)
             {
-                for (int x = 0; x < width; x++)
+                for (int x = 0; x < m_map_width; x++)
                 {
-                    int field = map[y * width + x];
+                    var field = m_map[y * m_map_width + x];
 
                     switch (field)
                     {
-                        case 1:
-                            DrawRoad(x, y);
+                        case TerrainType.Grass:
+                            DrawGrass(x, y);
                             break;
-                        case 2:
-                            DrawWall(x, y);
-                            break;
-                        case 9:
-                            DrawEnemy(x, y);
+                        case TerrainType.Mountain:
+                            DrawMountain(x, y);
                             break;
                     }
                 }
@@ -148,11 +159,11 @@ namespace SmallLabyWpfPlayer
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            int x, y;
-            x = m_client.GetPosition(m_player_id, out y);
+            // clear canvas
+            m_paint_canvas.Children.Clear();
 
             DrawMap();
-            DrawPlayer(x, y);
+            DrawPlayers();
         }
 
 

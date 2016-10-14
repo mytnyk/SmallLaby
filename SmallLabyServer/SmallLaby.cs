@@ -19,8 +19,11 @@ namespace SmallLabyServer
             return Game.Instance.AddPlayer(name);
         }
 
-        public int[] GetMap(int player_id)
+        public TerrainType[] GetMap()
         {
+            return Game.Instance.Map.GetFields();
+        }
+        /*
             var callee = Game.Instance.GetPlayer(player_id);
             var fields = Game.Instance.Map.GetFields();
             var copy = fields.ToArray();
@@ -34,24 +37,11 @@ namespace SmallLabyServer
             }
 
             return copy;
-        }
-
-        public void GetPosition(int player_id, out int x, out int y)
-        {
-            var player = Game.Instance.GetPlayer(player_id);
-            x = player.X;
-            y = player.Y;
-        }
+        }*/
 
         public void RemovePlayer(int player_id)
         {
             Game.Instance.RemovePlayer(player_id);
-        }
-
-        public void SetPosition(int player_id, int x, int y)
-        {
-            var player = Game.Instance.GetPlayer(player_id);
-            Game.Instance.SetPosition(player, x, y);
         }
 
         public int GetMapWidth()
@@ -68,6 +58,17 @@ namespace SmallLabyServer
         {
             var player = Game.Instance.GetPlayer(player_id);
             player.MovementStrategy = strategy;
+        }
+
+        public PlayerInfo[] GetPlayers()
+        {
+            return Game.Instance.GetPlayers().Select(
+                p => new PlayerInfo { Id = p.Key, X = p.Value.X, Y = p.Value.Y }).ToArray();
+        }
+
+        public ItemInfo[] GetItems()
+        {
+            throw new NotImplementedException();
         }
     }
 }

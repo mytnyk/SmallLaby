@@ -108,10 +108,13 @@
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer3.xsd">
-      <SubType>Designer</SubType>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.ItemInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.GetPositionResponse.datasource">
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.PlayerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.TerrainType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
   </ItemGroup>
@@ -149,6 +152,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\grass.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

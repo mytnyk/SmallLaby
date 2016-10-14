@@ -15,9 +15,9 @@ namespace SmallLabyServer
         private int m_current_player_id = 100;
         private Dictionary<int, Player> m_players = new Dictionary<int, Player>();
 
-        public IEnumerable<Player> GetPlayers()
+        public IDictionary<int, Player> GetPlayers()
         {
-            return m_players.Values;
+            return m_players;
         }
         public int AddPlayer(string name)
         {
@@ -112,14 +112,14 @@ namespace SmallLabyServer
             }
         }
 
-        public void SetPosition(Player player, int x, int y)
+        private void SetPosition(Player player, int x, int y)
         {
             if (x < 0 || y < 0 ||
                 x >= Instance.Map.Width || y >= Instance.Map.Height)
                 return;
 
-            int field = Instance.Map.GetField(x, y);
-            if ((field & Map.Wall) == 0)
+            var terrain = Instance.Map.GetField(x, y);
+            if (terrain != TerrainType.Mountain)
             {
                 player.X = x;
                 player.Y = y;

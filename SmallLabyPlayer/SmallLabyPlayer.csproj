@@ -56,7 +56,13 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="Service References\ServiceRefSmallLaby\SmallLaby.wsdl" />
-    <None Include="Service References\ServiceRefSmallLaby\SmallLabyPlayer.ServiceRefSmallLaby.GetPositionResponse.datasource">
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyPlayer.ServiceRefSmallLaby.ItemInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyPlayer.ServiceRefSmallLaby.PlayerInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyPlayer.ServiceRefSmallLaby.TerrainType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer.xsd">
@@ -66,9 +72,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ServiceRefSmallLaby\SmallLabyServer3.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
