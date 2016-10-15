@@ -1,0 +1,44 @@
+﻿<Window x:Class="SmallLabyWpfPlayer.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SmallLabyWpfPlayer"
+        mc:Ignorable="d"
+        Title="Small Laby Player" Height="350" Width="525">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SessionView.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Background="Black">
+        <StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    Background="Yellow" 
+                    Grid.Column="0" 
+                    Text="{Binding Path=PlayerName}"
+                    IsEnabled="{Binding Path=PlayerNameEnabled}"/>
+                <Button
+                    Grid.Column="1"
+                    Command="{Binding Path=ConnectCommand}"
+                    IsEnabled="{Binding Path=ConnectEnabled}">Connect</Button>
+            </Grid>
+            <ContentControl Content="{Binding CurrentSessionViewModel}"/>
+        </StackPanel>
+    </Grid>
+    <Window.InputBindings>
+        <KeyBinding Key="Up" Command="{Binding Path=MoveUpCommand}" />
+        <KeyBinding Key="Down" Command="{Binding Path=MoveDownCommand}" />
+        <KeyBinding Key="Left" Command="{Binding Path=MoveLeftCommand}" />
+        <KeyBinding Key="Right" Command="{Binding Path=MoveRightCommand}" />
+        <KeyBinding Key="Space" Command="{Binding Path=DoNotMoveCommand}" />
+        <KeyBinding Key="R" Command="{Binding Path=MoveRandomCommand}" />
+    </Window.InputBindings>
+</Window>

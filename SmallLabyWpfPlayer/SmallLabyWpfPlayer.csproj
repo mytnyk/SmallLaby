@@ -57,12 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ClientModel.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="Service References\ServiceRefSmallLaby\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
+    <Compile Include="ViewModel\SessionViewModel.cs" />
+    <Compile Include="ViewModel\ViewModelBase.cs" />
+    <Page Include="View\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -70,10 +75,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\MainView.xaml.cs">
+      <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\SessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -122,15 +131,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\player.bmp" />
+    <Resource Include="Images\player.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\aze1.bmp" />
-    <Resource Include="images\mud.bmp" />
-    <Resource Include="images\road.bmp" />
+    <Resource Include="Images\aze1.bmp" />
+    <Resource Include="Images\mud.bmp" />
+    <Resource Include="Images\road.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\tree.bmp" />
+    <Resource Include="Images\tree.bmp" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -154,8 +163,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\grass.bmp" />
+    <Resource Include="Images\grass.bmp" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
