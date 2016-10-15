@@ -66,6 +66,7 @@ namespace SmallLabyWpfPlayer
 
             AddMap(new_items);
             AddPlayers(new_items);
+            AddItems(new_items);
 
             Items = new_items;
             OnPropertyChanged("Items");
@@ -81,6 +82,25 @@ namespace SmallLabyWpfPlayer
                 else
                     AddEnemy(player.X, player.Y, player.Name, items);
             }
+        }
+
+        private void AddItems(ICollection<BaseImageViewModel> items)
+        {
+            var elements = m_model.GetItems();
+            foreach (var element in elements)
+            {
+                switch (element.Type)
+                {
+                    case ClientModel.ItemType.Gold:
+                        AddGold(element.X, element.Y, items);
+                        break;
+                }
+            }
+        }
+
+        private void AddGold(int x, int y, ICollection<BaseImageViewModel> items)
+        {
+            items.Add(CreateTextBoxViewModel(x, y, "gold"));
         }
 
         private void AddMe(int x, int y, string name,

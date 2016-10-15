@@ -27,6 +27,20 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetGold">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="player_id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetGoldResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetGoldResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetMap">
     <xs:complexType>
       <xs:sequence />

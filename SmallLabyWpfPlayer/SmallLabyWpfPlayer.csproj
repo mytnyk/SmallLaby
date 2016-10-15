@@ -58,13 +58,13 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\ClientModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="Service References\ServiceRefSmallLaby\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="Utility\RelayCommand.cs" />
     <Compile Include="ViewModel\SessionViewModel.cs" />
     <Compile Include="ViewModel\ViewModelBase.cs" />
     <Page Include="View\MainView.xaml">
@@ -142,6 +142,9 @@
     <Resource Include="Images\tree.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\grass.bmp" />
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
@@ -162,10 +165,6 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\grass.bmp" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

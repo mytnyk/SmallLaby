@@ -235,6 +235,12 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/RemovePlayer", ReplyAction="http://tempuri.org/ISmallLaby/RemovePlayerResponse")]
         System.Threading.Tasks.Task RemovePlayerAsync(int player_id);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetGold", ReplyAction="http://tempuri.org/ISmallLaby/GetGoldResponse")]
+        int GetGold(int player_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetGold", ReplyAction="http://tempuri.org/ISmallLaby/GetGoldResponse")]
+        System.Threading.Tasks.Task<int> GetGoldAsync(int player_id);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMap", ReplyAction="http://tempuri.org/ISmallLaby/GetMapResponse")]
         SmallLabyWpfPlayer.ServiceRefSmallLaby.TerrainType[] GetMap();
         
@@ -313,6 +319,14 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         
         public System.Threading.Tasks.Task RemovePlayerAsync(int player_id) {
             return base.Channel.RemovePlayerAsync(player_id);
+        }
+        
+        public int GetGold(int player_id) {
+            return base.Channel.GetGold(player_id);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetGoldAsync(int player_id) {
+            return base.Channel.GetGoldAsync(player_id);
         }
         
         public SmallLabyWpfPlayer.ServiceRefSmallLaby.TerrainType[] GetMap() {

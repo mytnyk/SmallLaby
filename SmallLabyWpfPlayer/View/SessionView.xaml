@@ -7,11 +7,12 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50"/>
                     </Grid.ColumnDefinitions>
                     <ItemsControl ItemsSource="{Binding Items}">
                         <ItemsControl.Resources>
                             <DataTemplate DataType="{x:Type local:TextBoxViewModel}">
-                                <TextBox Text="{Binding Text}"/>
+                                <TextBox Text="{Binding Text}" IsReadOnly="True"/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type local:ImageBoxViewModel}">
                                 <Image Source="{Binding Bitmap}"/>
@@ -29,6 +30,11 @@
                             </Style>
                         </ItemsControl.ItemContainerStyle>
                     </ItemsControl>
+                    <!--TODO info panel-->
+                    <StackPanel Background="Yellow" Grid.Column="1" Height="100">
+                        <TextBox Background="Yellow" 
+                        Text="Info" IsReadOnly="true"/>
+                    </StackPanel>
                 </Grid>
             </StackPanel>
         </Grid>

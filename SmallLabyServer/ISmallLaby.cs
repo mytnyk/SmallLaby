@@ -58,6 +58,9 @@ namespace SmallLabyServer
         [OperationContract]
         void RemovePlayer(int player_id);
 
+        [OperationContract]
+        int GetGold(int player_id);
+
         // Call it once on start up
         [OperationContract]
         TerrainType[] GetMap();

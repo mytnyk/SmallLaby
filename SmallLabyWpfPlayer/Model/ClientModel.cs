@@ -14,6 +14,14 @@ namespace SmallLabyWpfPlayer
             Forest,
             Unknown,
         }
+        public enum ItemType
+        {
+            Gold,
+            Bonus,
+            Exit,
+            Unknown,
+        }
+
         public enum MovementStrategy
         {
             MoveUp,
@@ -36,6 +44,13 @@ namespace SmallLabyWpfPlayer
             public int Y;
             public Terrain Terrain;
         }
+        public struct Item
+        {
+            public int X;
+            public int Y;
+            public ItemType Type;
+        }
+
         private SmallLabyClient m_client;
         private int m_player_id;
         private string m_player_name;
@@ -70,16 +85,45 @@ namespace SmallLabyWpfPlayer
 
         public IEnumerable<Player> GetPlayers()
         {
+            if (!IsConnected)
+                return Enumerable.Empty<Player>();
+
+            var gold = m_client.GetGold(m_player_id);
             return m_client.GetPlayers().Select(p =>
             new Player
             {
                 X = p.X,
                 Y = p.Y,
-                Name = (p.Id == m_player_id) ? m_player_name : "enemy",
+                Name = (p.Id == m_player_id) ? m_player_name + "(" + gold + ")" : "enemy",
                 Me = p.Id == m_player_id
             });
         }
 
+        public IEnumerable<Item> GetItems()
+        {
+            foreach (var item_info in m_client.GetItems())
+            {
+                ItemType type = ItemType.Unknown;
+                switch (item_info.Item)
+                {
+                    case ServiceRefSmallLaby.Item.Gold:
+                        type = ItemType.Gold;
+                        break;
+                    case ServiceRefSmallLaby.Item.Bonus:
+                        type = ItemType.Bonus;
+                        break;
+                    case ServiceRefSmallLaby.Item.Exit:
+                        type = ItemType.Exit;
+                        break;
+                }
+                yield return new Item
+                {
+                    X = item_info.X,
+                    Y = item_info.Y,
+                    Type = type,
+                };
+            }
+        }
         public IEnumerable<Field> GetMap()
         {
             for (int y = 0; y < m_map_height; y++)

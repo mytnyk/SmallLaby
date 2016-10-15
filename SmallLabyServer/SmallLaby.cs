@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 
 namespace SmallLabyServer
 {
@@ -23,21 +21,6 @@ namespace SmallLabyServer
         {
             return Game.Instance.Map.GetFields();
         }
-        /*
-            var callee = Game.Instance.GetPlayer(player_id);
-            var fields = Game.Instance.Map.GetFields();
-            var copy = fields.ToArray();
-
-            foreach (var player in Game.Instance.GetPlayers())
-            {
-                if (player == callee)
-                    continue; // do not put player himself onto map
-                int index = player.Y * Game.Instance.Map.Width + player.X;
-                copy[index] += Map.Enemy;
-            }
-
-            return copy;
-        }*/
 
         public void RemovePlayer(int player_id)
         {
@@ -62,13 +45,20 @@ namespace SmallLabyServer
 
         public PlayerInfo[] GetPlayers()
         {
-            return Game.Instance.GetPlayers().Select(
+            return Game.Instance.Players.Select(
                 p => new PlayerInfo { Id = p.Key, X = p.Value.X, Y = p.Value.Y }).ToArray();
         }
 
         public ItemInfo[] GetItems()
         {
-            throw new NotImplementedException();
+            return Game.Instance.GoldItems.Select(
+                i => new ItemInfo { Item = Item.Gold, X = i.X, Y = i.Y }).ToArray();
+        }
+
+        public int GetGold(int player_id)
+        {
+            var player = Game.Instance.GetPlayer(player_id);
+            return player.Gold;
         }
     }
 }

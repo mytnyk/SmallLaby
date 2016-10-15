@@ -13,17 +13,14 @@ namespace SmallLabyServer
         public Map Map { get; } = new Map();
 
         private int m_current_player_id = 100;
-        private Dictionary<int, Player> m_players = new Dictionary<int, Player>();
+        public Dictionary<int, Player> Players { get; } = new Dictionary<int, Player>();
+        public List<Gold> GoldItems { get; } = new List<Gold>();
 
-        public IDictionary<int, Player> GetPlayers()
-        {
-            return m_players;
-        }
         public int AddPlayer(string name)
         {
             var p = new Player(name);
             int player_id = m_current_player_id;
-            m_players[player_id] = p;
+            Players[player_id] = p;
             m_current_player_id++;
 
             var move_player_thread = new Thread(MovePlayer);
@@ -34,22 +31,23 @@ namespace SmallLabyServer
 
         public void RemovePlayer(int player_id)
         {
-            m_players.Remove(player_id);
+            Players.Remove(player_id);
         }
 
         public Player GetPlayer(int player_id)
         {
-            return m_players[player_id];
+            return Players[player_id];
         }
 
         public bool TryGetPlayer(int player_id, out Player player)
         {
-            return m_players.TryGetValue(player_id, out player);
+            return Players.TryGetValue(player_id, out player);
         }
 
         private Game()
         {
-            
+            GoldItems.Add(new Gold { Amount = 25, X = 1, Y = 1});
+            GoldItems.Add(new Gold { Amount = 50, X = 3, Y = 3 });
         }
 
         public static Game Instance { get; } = new Game();
@@ -67,7 +65,7 @@ namespace SmallLabyServer
                 if (!TryGetPlayer(player_id, out player))
                     return;
 
-                Thread.Sleep((int)(1000 / player.Speed)); // todo add speed
+                Thread.Sleep((int)(1000 / player.Speed)); // problem if speed is zero
 
                 var x = player.X;
                 var y = player.Y;
@@ -123,6 +121,14 @@ namespace SmallLabyServer
             {
                 player.X = x;
                 player.Y = y;
+
+                var gold = GoldItems.Find(g => g.X == x && g.Y == y);
+                if (gold != null)
+                {
+                    player.Gold += gold.Amount;
+                    GoldItems.Remove(gold);
+                    player.Speed -= 1; // some experimental code
+                }
             }
         }
     }
