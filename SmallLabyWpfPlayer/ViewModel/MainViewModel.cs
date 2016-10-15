@@ -30,6 +30,8 @@ namespace SmallLabyWpfPlayer
 
         public bool ConnectEnabled => !m_model.IsConnected;
 
+        public bool DisconnectEnabled => m_model.IsConnected;
+
         public ICommand MoveUpCommand => new RelayCommand(
             param => m_model.SetMovementStrategy(ClientModel.MovementStrategy.MoveUp));
         public ICommand MoveDownCommand => new RelayCommand(
@@ -44,11 +46,14 @@ namespace SmallLabyWpfPlayer
             param => m_model.SetMovementStrategy(ClientModel.MovementStrategy.MoveRandom));
         public ICommand ConnectCommand => new RelayCommand(param => Connect());
 
+        public ICommand DisconnectCommand => new RelayCommand(param => Disconnect());
+
         public void Connect()
         {
             m_model.Connect(m_player_name);
             OnPropertyChanged("PlayerNameEnabled");
             OnPropertyChanged("ConnectEnabled");
+            OnPropertyChanged("DisconnectEnabled");
         }
 
         public void Disconnect()
@@ -56,6 +61,7 @@ namespace SmallLabyWpfPlayer
             m_model.Disconnect();
             OnPropertyChanged("PlayerNameEnabled");
             OnPropertyChanged("ConnectEnabled");
+            OnPropertyChanged("DisconnectEnabled");
         }
     }
 }

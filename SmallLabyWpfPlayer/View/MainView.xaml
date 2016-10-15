@@ -19,6 +19,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <TextBox
                     Background="Yellow" 
@@ -29,6 +30,10 @@
                     Grid.Column="1"
                     Command="{Binding Path=ConnectCommand}"
                     IsEnabled="{Binding Path=ConnectEnabled}">Connect</Button>
+                <Button
+                    Grid.Column="2"
+                    Command="{Binding Path=DisconnectCommand}"
+                    IsEnabled="{Binding Path=DisconnectEnabled}">Disconnect</Button>
             </Grid>
             <ContentControl Content="{Binding CurrentSessionViewModel}"/>
         </StackPanel>
