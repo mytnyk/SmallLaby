@@ -12,7 +12,7 @@
                     <ItemsControl ItemsSource="{Binding Items}">
                         <ItemsControl.Resources>
                             <DataTemplate DataType="{x:Type local:TextBoxViewModel}">
-                                <TextBox Text="{Binding Text}" IsReadOnly="True"/>
+                                <TextBox Text="{Binding Text}" IsReadOnly="True" Background="Transparent" BorderThickness="0"/>
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type local:ImageBoxViewModel}">
                                 <Image Source="{Binding Bitmap}"/>

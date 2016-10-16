@@ -26,6 +26,7 @@ namespace SmallLabyWpfPlayer
         public ObservableCollection<BaseImageViewModel> Items { get; set; }
 
         private BitmapImage m_player_image;
+        private BitmapImage m_gold_image;
         private BitmapImage m_grass_image;
         private BitmapImage m_mountain_image;
         private BitmapImage m_enemy_image;
@@ -38,6 +39,7 @@ namespace SmallLabyWpfPlayer
             m_model = model;
 
             m_player_image   = CreateBitmapImage("/Images/aze1.bmp");
+            m_gold_image     = CreateBitmapImage("/Images/gold1.png");
             m_grass_image    = CreateBitmapImage("/Images/grass.bmp");
             m_mountain_image = CreateBitmapImage("/Images/mud.bmp");
             m_enemy_image    = CreateBitmapImage("/Images/player.bmp");
@@ -53,9 +55,10 @@ namespace SmallLabyWpfPlayer
         {
             var bitmap_image = new BitmapImage();
             bitmap_image.BeginInit();
-            bitmap_image.UriSource = new Uri(uri, UriKind.Relative);
+            bitmap_image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
             bitmap_image.DecodePixelHeight = size;
             bitmap_image.DecodePixelWidth = size;
+            bitmap_image.UriSource = new Uri(uri, UriKind.Relative);
             bitmap_image.EndInit();
             return bitmap_image;
         }
@@ -100,7 +103,7 @@ namespace SmallLabyWpfPlayer
 
         private void AddGold(int x, int y, ICollection<BaseImageViewModel> items)
         {
-            items.Add(CreateTextBoxViewModel(x, y, "gold"));
+            items.Add(CreateImageBoxViewModel(x, y, m_gold_image));
         }
 
         private void AddMe(int x, int y, string name,
