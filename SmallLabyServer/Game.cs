@@ -31,6 +31,10 @@ namespace SmallLabyServer
 
         public void RemovePlayer(int player_id)
         {
+            var player = GetPlayer(player_id);
+            var gold = player.Gold;
+            if (gold > 0)
+                GoldItems.Add(new Gold { Amount = gold, X = player.X, Y = player.Y });
             Players.Remove(player_id);
         }
 
@@ -66,6 +70,9 @@ namespace SmallLabyServer
                     return;
 
                 Thread.Sleep((int)(1000 / player.Speed)); // problem if speed is zero
+
+                if (!TryGetPlayer(player_id, out player))
+                    return;
 
                 var x = player.X;
                 var y = player.Y;
@@ -127,7 +134,6 @@ namespace SmallLabyServer
                 {
                     player.Gold += gold.Amount;
                     GoldItems.Remove(gold);
-                    player.Speed -= 0.5; // some experimental code
                 }
             }
         }

@@ -151,6 +151,8 @@ namespace SmallLabyWpfPlayer
 
         public void SetMovementStrategy(MovementStrategy strategy)
         {
+            if (!IsConnected)
+                return;
             switch (strategy)
             {
                 case MovementStrategy.MoveLeft:
