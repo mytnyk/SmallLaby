@@ -79,5 +79,8 @@ namespace SmallLabyServer
 
         [OperationContract]
         void SetMovementStrategy(int player_id, MovementStrategy strategy);
+
+        [OperationContract]
+        double GetSpeed(int player_id);
     }
 }

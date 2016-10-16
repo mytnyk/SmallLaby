@@ -127,7 +127,7 @@ namespace SmallLabyServer
                 {
                     player.Gold += gold.Amount;
                     GoldItems.Remove(gold);
-                    player.Speed -= 1; // some experimental code
+                    player.Speed -= 0.5; // some experimental code
                 }
             }
         }

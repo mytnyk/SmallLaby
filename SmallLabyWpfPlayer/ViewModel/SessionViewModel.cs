@@ -23,6 +23,7 @@ namespace SmallLabyWpfPlayer
 
     public class SessionViewModel : ViewModelBase
     {
+        public InfoViewModel CurrentInfoViewModel { get; private set; }
         public ObservableCollection<BaseImageViewModel> Items { get; set; }
 
         private BitmapImage m_player_image;
@@ -37,6 +38,8 @@ namespace SmallLabyWpfPlayer
         public SessionViewModel(ClientModel model)
         {
             m_model = model;
+
+            CurrentInfoViewModel = new InfoViewModel(model);
 
             m_player_image   = CreateBitmapImage("/Images/aze1.bmp");
             m_gold_image     = CreateBitmapImage("/Images/gold1.png");
@@ -73,6 +76,8 @@ namespace SmallLabyWpfPlayer
 
             Items = new_items;
             OnPropertyChanged("Items");
+
+            CurrentInfoViewModel.Update();
         }
 
         private void AddPlayers(ICollection<BaseImageViewModel> items)

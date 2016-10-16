@@ -85,16 +85,12 @@ namespace SmallLabyWpfPlayer
 
         public IEnumerable<Player> GetPlayers()
         {
-            if (!IsConnected)
-                return Enumerable.Empty<Player>();
-
-            var gold = m_client.GetGold(m_player_id);
             return m_client.GetPlayers().Select(p =>
             new Player
             {
                 X = p.X,
                 Y = p.Y,
-                Name = (p.Id == m_player_id) ? m_player_name + "(" + gold + ")" : "enemy",
+                Name = (p.Id == m_player_id) ? m_player_name : "enemy",
                 Me = p.Id == m_player_id
             });
         }
@@ -185,5 +181,10 @@ namespace SmallLabyWpfPlayer
         }
 
         public bool IsConnected { get; private set; }
+
+        public int PlayerGold => IsConnected ? m_client.GetGold(m_player_id) : 0;
+
+        public double PlayerSpeed => IsConnected ? m_client.GetSpeed(m_player_id) : 0;
+
     }
 }

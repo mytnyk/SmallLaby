@@ -61,6 +61,12 @@
   <wsdl:message name="ISmallLaby_SetMovementStrategy_OutputMessage">
     <wsdl:part name="parameters" element="tns:SetMovementStrategyResponse" />
   </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetSpeed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpeed" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetSpeed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpeedResponse" />
+  </wsdl:message>
   <wsdl:portType name="ISmallLaby">
     <wsdl:operation name="AddPlayer">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/AddPlayer" message="tns:ISmallLaby_AddPlayer_InputMessage" />
@@ -97,6 +103,10 @@
     <wsdl:operation name="SetMovementStrategy">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategy" message="tns:ISmallLaby_SetMovementStrategy_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse" message="tns:ISmallLaby_SetMovementStrategy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpeed">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetSpeed" message="tns:ISmallLaby_GetSpeed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetSpeedResponse" message="tns:ISmallLaby_GetSpeed_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ISmallLaby" type="tns:ISmallLaby">
@@ -175,6 +185,15 @@
     </wsdl:operation>
     <wsdl:operation name="SetMovementStrategy">
       <soap:operation soapAction="http://tempuri.org/ISmallLaby/SetMovementStrategy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpeed">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetSpeed" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

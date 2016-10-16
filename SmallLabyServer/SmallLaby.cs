@@ -60,5 +60,11 @@ namespace SmallLabyServer
             var player = Game.Instance.GetPlayer(player_id);
             return player.Gold;
         }
+
+        public double GetSpeed(int player_id)
+        {
+            var player = Game.Instance.GetPlayer(player_id);
+            return player.Speed;
+        }
     }
 }

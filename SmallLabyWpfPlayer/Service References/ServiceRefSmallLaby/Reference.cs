@@ -276,6 +276,12 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/SetMovementStrategy", ReplyAction="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse")]
         System.Threading.Tasks.Task SetMovementStrategyAsync(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetSpeed", ReplyAction="http://tempuri.org/ISmallLaby/GetSpeedResponse")]
+        double GetSpeed(int player_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetSpeed", ReplyAction="http://tempuri.org/ISmallLaby/GetSpeedResponse")]
+        System.Threading.Tasks.Task<double> GetSpeedAsync(int player_id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -375,6 +381,14 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         
         public System.Threading.Tasks.Task SetMovementStrategyAsync(int player_id, SmallLabyWpfPlayer.ServiceRefSmallLaby.MovementStrategy strategy) {
             return base.Channel.SetMovementStrategyAsync(player_id, strategy);
+        }
+        
+        public double GetSpeed(int player_id) {
+            return base.Channel.GetSpeed(player_id);
+        }
+        
+        public System.Threading.Tasks.Task<double> GetSpeedAsync(int player_id) {
+            return base.Channel.GetSpeedAsync(player_id);
         }
     }
 }
