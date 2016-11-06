@@ -66,5 +66,11 @@ namespace SmallLabyServer
             var player = Game.Instance.GetPlayer(player_id);
             return player.Speed;
         }
+
+        public MonsterInfo[] GetMonsters()
+        {
+            return Game.Instance.Monsters.Select(
+                m => new MonsterInfo { Health = m.Health, X = m.X, Y = m.Y}).ToArray();
+        }
     }
 }

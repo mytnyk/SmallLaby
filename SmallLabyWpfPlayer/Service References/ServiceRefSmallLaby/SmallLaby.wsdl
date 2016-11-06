@@ -37,6 +37,12 @@
   <wsdl:message name="ISmallLaby_GetPlayers_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetPlayersResponse" />
   </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMonsters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonsters" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMonsters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonstersResponse" />
+  </wsdl:message>
   <wsdl:message name="ISmallLaby_GetItems_InputMessage">
     <wsdl:part name="parameters" element="tns:GetItems" />
   </wsdl:message>
@@ -87,6 +93,10 @@
     <wsdl:operation name="GetPlayers">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetPlayers" message="tns:ISmallLaby_GetPlayers_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetPlayersResponse" message="tns:ISmallLaby_GetPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsters">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetMonsters" message="tns:ISmallLaby_GetMonsters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetMonstersResponse" message="tns:ISmallLaby_GetMonsters_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetItems">
       <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetItems" message="tns:ISmallLaby_GetItems_InputMessage" />
@@ -149,6 +159,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetPlayers">
       <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsters">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetMonsters" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

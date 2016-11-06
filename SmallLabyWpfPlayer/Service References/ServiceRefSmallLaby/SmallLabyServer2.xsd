@@ -65,6 +65,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMonsters">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMonstersResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SmallLabyServer" minOccurs="0" name="GetMonstersResult" nillable="true" type="q3:ArrayOfMonsterInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetItems">
     <xs:complexType>
       <xs:sequence />
@@ -73,7 +85,7 @@
   <xs:element name="GetItemsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SmallLabyServer" minOccurs="0" name="GetItemsResult" nillable="true" type="q3:ArrayOfItemInfo" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SmallLabyServer" minOccurs="0" name="GetItemsResult" nillable="true" type="q4:ArrayOfItemInfo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -105,7 +117,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="player_id" type="xs:int" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SmallLabyServer" minOccurs="0" name="strategy" type="q4:MovementStrategy" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SmallLabyServer" minOccurs="0" name="strategy" type="q5:MovementStrategy" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

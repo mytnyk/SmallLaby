@@ -15,6 +15,17 @@ namespace SmallLabyServer
         [DataMember]
         public int Y;
     }
+    [StructLayout(LayoutKind.Sequential)]
+    [DataContract]
+    public struct MonsterInfo
+    {
+        [DataMember]
+        public int Health;
+        [DataMember]
+        public int X;
+        [DataMember]
+        public int Y;
+    }
     enum Item
     {
         Gold,
@@ -67,6 +78,9 @@ namespace SmallLabyServer
 
         [OperationContract]
         PlayerInfo[] GetPlayers();
+
+        [OperationContract]
+        MonsterInfo[] GetMonsters();
 
         [OperationContract]
         ItemInfo[] GetItems();

@@ -9,6 +9,7 @@ namespace SmallLabyServer
 {
     class Game
     {
+        private Random m_random_generator = new Random();
         public bool GameOver = false;
         public Map Map { get; } = new Map();
 
@@ -16,26 +17,41 @@ namespace SmallLabyServer
         public Dictionary<int, Player> Players { get; } = new Dictionary<int, Player>();
         public List<Gold> GoldItems { get; } = new List<Gold>();
 
+        private int m_start_x = 0;
+        private int m_start_y = 0;
+
+        public List<Monster> Monsters { get; } = new List<Monster>();
         public int AddPlayer(string name)
         {
             var p = new Player(name);
-            int player_id = m_current_player_id;
-            Players[player_id] = p;
-            m_current_player_id++;
+            p.X = m_start_x;
+            p.Y = m_start_y;
+            lock (Players)
+            {
+                int player_id = m_current_player_id;
+                Players[player_id] = p;
+                m_current_player_id++;
 
-            var move_player_thread = new Thread(MovePlayer);
-            move_player_thread.Start(player_id);
+                var move_player_thread = new Thread(MovePlayer);
+                move_player_thread.Start(player_id);
 
-            return player_id;
+                return player_id;
+            }
         }
 
         public void RemovePlayer(int player_id)
         {
-            var player = GetPlayer(player_id);
-            var gold = player.Gold;
-            if (gold > 0)
-                GoldItems.Add(new Gold { Amount = gold, X = player.X, Y = player.Y });
-            Players.Remove(player_id);
+            lock (Players)
+            {
+                var player = GetPlayer(player_id);
+                var gold = player.Gold;
+                if (gold > 0)
+                {
+                    GoldItems.Add(new Gold { Amount = gold, X = player.X, Y = player.Y });
+                    player.Gold = 0;
+                }
+                Players.Remove(player_id);
+            }
         }
 
         public Player GetPlayer(int player_id)
@@ -48,21 +64,88 @@ namespace SmallLabyServer
             return Players.TryGetValue(player_id, out player);
         }
 
+        public void AddMonsters()
+        {
+            Monsters.Add(new Monster { X = 3, Y = 3 });
+
+            var move_monsters_thread = new Thread(MoveMonsters);
+            move_monsters_thread.Start();
+        }
         private Game()
         {
             GoldItems.Add(new Gold { Amount = 25, X = 1, Y = 1});
             GoldItems.Add(new Gold { Amount = 50, X = 3, Y = 3 });
+            GoldItems.Add(new Gold { Amount = 25, X = 2, Y = 2 });
+
+            AddMonsters();
         }
 
         public static Game Instance { get; } = new Game();
 
+        private void ChangeXY(ref int x, ref int y, MovementStrategy strategy)
+        {
+            switch (strategy)
+            {
+                case MovementStrategy.StandStill:
+                    break;
+                case MovementStrategy.MoveDown:
+                    y++;
+                    break;
+                case MovementStrategy.MoveUp:
+                    y--;
+                    break;
+                case MovementStrategy.MoveLeft:
+                    x--;
+                    break;
+                case MovementStrategy.MoveRight:
+                    x++;
+                    break;
+                case MovementStrategy.RandomDirection:
+                    int random_move = m_random_generator.Next(5);
+                    switch (random_move)
+                    {
+                        case 0:
+                            y++;
+                            break;
+                        case 1:
+                            y--;
+                            break;
+                        case 2:
+                            x++;
+                            break;
+                        case 3:
+                            x--;
+                            break;
+                        case 4:
+                            break;
+                    }
+                    break;
+            }
+        }
+        private static void MoveMonsters()
+        {
+            Instance._MoveMonsters();
+        }
+        private void _MoveMonsters()
+        {
+            while (!GameOver)
+            {
+                Thread.Sleep(500);
+                foreach (var monster in Monsters)
+                {
+                    var x = monster.X;
+                    var y = monster.Y;
+                    ChangeXY(ref x, ref y, monster.MovementStrategy);
+                    SetPosition(monster, x, y);
+                }
+            }
+        }
         private static void MovePlayer(object player_id)
         {
             Instance._MovePlayer((int)player_id);
         }
         private void _MovePlayer(int player_id)
         {
-            var random_generator = new Random();
             while (!GameOver)
             {
                 Player player;
@@ -71,49 +154,17 @@ namespace SmallLabyServer
 
                 Thread.Sleep((int)(1000 / player.Speed)); // problem if speed is zero
 
-                if (!TryGetPlayer(player_id, out player))
-                    return;
-
-                var x = player.X;
-                var y = player.Y;
-                switch (player.MovementStrategy)
+                lock (Players)
                 {
-                    case MovementStrategy.StandStill:
-                        break;
-                    case MovementStrategy.MoveDown:
-                        y++;
-                        break;
-                    case MovementStrategy.MoveUp:
-                        y--;
-                        break;
-                    case MovementStrategy.MoveLeft:
-                        x--;
-                        break;
-                    case MovementStrategy.MoveRight:
-                        x++;
-                        break;
-                    case MovementStrategy.RandomDirection:
-                        int random_move = random_generator.Next(5);
-                        switch (random_move)
-                        {
-                            case 0:
-                                y++;
-                                break;
-                            case 1:
-                                y--;
-                                break;
-                            case 2:
-                                x++;
-                                break;
-                            case 3:
-                                x--;
-                                break;
-                            case 4:
-                                break;
-                        }
-                        break;
+                    if (!TryGetPlayer(player_id, out player))
+                        return;
+
+                    var x = player.X;
+                    var y = player.Y;
+                    ChangeXY(ref x, ref y, player.MovementStrategy);
+
+                    SetPosition(player, x, y);
                 }
-                SetPosition(player, x, y);
             }
         }
 
@@ -135,7 +186,47 @@ namespace SmallLabyServer
                     player.Gold += gold.Amount;
                     GoldItems.Remove(gold);
                 }
+
+                var monster = Monsters.Find(m => m.X == x && m.Y == y);
+                if (monster != null)
+                {
+                    KillPlayer(player);
+                }
             }
+        }
+        private void SetPosition(Monster monster, int x, int y)
+        {
+            if (x < 0 || y < 0 ||
+                x >= Instance.Map.Width || y >= Instance.Map.Height)
+                return;
+
+            var terrain = Instance.Map.GetField(x, y);
+            if (terrain != TerrainType.Mountain)
+            {
+                monster.X = x;
+                monster.Y = y;
+
+                lock (Players)
+                {
+                    var players = Players.Values.Where(p => p.X == x && p.Y == y);
+                    foreach (var player in players)
+                    {
+                        KillPlayer(player);
+                    }
+                }
+            }
+        }
+
+        private void KillPlayer(Player player)
+        {
+            var gold = player.Gold;
+            if (gold > 0)
+            {
+                GoldItems.Add(new Gold { Amount = gold, X = player.X, Y = player.Y });
+                player.Gold = 0;
+            }
+            player.X = m_start_x;
+            player.Y = m_start_y;
         }
     }
 }

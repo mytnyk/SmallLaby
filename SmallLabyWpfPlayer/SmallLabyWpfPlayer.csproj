@@ -125,6 +125,9 @@
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.ItemInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.MonsterInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\ServiceRefSmallLaby\SmallLabyWpfPlayer.ServiceRefSmallLaby.PlayerInfo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -151,6 +154,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\gold1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\m1.bmp" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

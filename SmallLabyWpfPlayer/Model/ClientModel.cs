@@ -38,6 +38,11 @@ namespace SmallLabyWpfPlayer
             public string Name;
             public bool Me;
         }
+        public struct Monster
+        {
+            public int X;
+            public int Y;
+        }
         public struct Field
         {
             public int X;
@@ -92,6 +97,16 @@ namespace SmallLabyWpfPlayer
                 Y = p.Y,
                 Name = (p.Id == m_player_id) ? m_player_name : "enemy",
                 Me = p.Id == m_player_id
+            });
+        }
+
+        public IEnumerable<Monster> GetMonsters()
+        {
+            return m_client.GetMonsters().Select(m =>
+            new Monster
+            {
+                X = m.X,
+                Y = m.Y,
             });
         }
 

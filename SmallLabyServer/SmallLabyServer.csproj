@@ -49,6 +49,7 @@
     <Compile Include="Gold.cs" />
     <Compile Include="ISmallLaby.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="Monster.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

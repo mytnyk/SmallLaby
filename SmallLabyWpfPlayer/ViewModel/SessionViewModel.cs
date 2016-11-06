@@ -31,6 +31,7 @@ namespace SmallLabyWpfPlayer
         private BitmapImage m_grass_image;
         private BitmapImage m_mountain_image;
         private BitmapImage m_enemy_image;
+        private BitmapImage m_monster_image;
 
         private const int size = 50;
         private ClientModel m_model;
@@ -46,6 +47,7 @@ namespace SmallLabyWpfPlayer
             m_grass_image    = CreateBitmapImage("/Images/grass.bmp");
             m_mountain_image = CreateBitmapImage("/Images/mud.bmp");
             m_enemy_image    = CreateBitmapImage("/Images/player.bmp");
+            m_monster_image  = CreateBitmapImage("/Images/m1.bmp");
 
             var timer = new DispatcherTimer();
             timer.Tick += new EventHandler(Update);
@@ -73,6 +75,7 @@ namespace SmallLabyWpfPlayer
             AddMap(new_items);
             AddPlayers(new_items);
             AddItems(new_items);
+            AddMonsters(new_items);
 
             Items = new_items;
             OnPropertyChanged("Items");
@@ -89,6 +92,15 @@ namespace SmallLabyWpfPlayer
                     AddMe(player.X, player.Y, player.Name, items);
                 else
                     AddEnemy(player.X, player.Y, player.Name, items);
+            }
+        }
+
+        private void AddMonsters(ICollection<BaseImageViewModel> items)
+        {
+            var monsters = m_model.GetMonsters();
+            foreach (var monster in monsters)
+            {
+                AddMonster(monster.X, monster.Y, items);
             }
         }
 
@@ -123,6 +135,11 @@ namespace SmallLabyWpfPlayer
         {
             items.Add(CreateImageBoxViewModel(x, y, m_enemy_image));
             items.Add(CreateTextBoxViewModel(x, y, name));
+        }
+
+        private void AddMonster(int x, int y, ICollection<BaseImageViewModel> items)
+        {
+            items.Add(CreateImageBoxViewModel(x, y, m_monster_image));
         }
 
         private BaseImageViewModel CreateTextBoxViewModel(int x, int y, string text)

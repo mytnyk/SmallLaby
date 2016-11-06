@@ -108,6 +108,82 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="MonsterInfo", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
+    [System.SerializableAttribute()]
+    public partial struct MonsterInfo : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int HealthField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int YField;
+        
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Health {
+            get {
+                return this.HealthField;
+            }
+            set {
+                if ((this.HealthField.Equals(value) != true)) {
+                    this.HealthField = value;
+                    this.RaisePropertyChanged("Health");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int X {
+            get {
+                return this.XField;
+            }
+            set {
+                if ((this.XField.Equals(value) != true)) {
+                    this.XField = value;
+                    this.RaisePropertyChanged("X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Y {
+            get {
+                return this.YField;
+            }
+            set {
+                if ((this.YField.Equals(value) != true)) {
+                    this.YField = value;
+                    this.RaisePropertyChanged("Y");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="ItemInfo", Namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer")]
     [System.SerializableAttribute()]
     public partial struct ItemInfo : System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -253,6 +329,12 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetPlayers", ReplyAction="http://tempuri.org/ISmallLaby/GetPlayersResponse")]
         System.Threading.Tasks.Task<SmallLabyWpfPlayer.ServiceRefSmallLaby.PlayerInfo[]> GetPlayersAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMonsters", ReplyAction="http://tempuri.org/ISmallLaby/GetMonstersResponse")]
+        SmallLabyWpfPlayer.ServiceRefSmallLaby.MonsterInfo[] GetMonsters();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetMonsters", ReplyAction="http://tempuri.org/ISmallLaby/GetMonstersResponse")]
+        System.Threading.Tasks.Task<SmallLabyWpfPlayer.ServiceRefSmallLaby.MonsterInfo[]> GetMonstersAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISmallLaby/GetItems", ReplyAction="http://tempuri.org/ISmallLaby/GetItemsResponse")]
         SmallLabyWpfPlayer.ServiceRefSmallLaby.ItemInfo[] GetItems();
         
@@ -349,6 +431,14 @@ namespace SmallLabyWpfPlayer.ServiceRefSmallLaby {
         
         public System.Threading.Tasks.Task<SmallLabyWpfPlayer.ServiceRefSmallLaby.PlayerInfo[]> GetPlayersAsync() {
             return base.Channel.GetPlayersAsync();
+        }
+        
+        public SmallLabyWpfPlayer.ServiceRefSmallLaby.MonsterInfo[] GetMonsters() {
+            return base.Channel.GetMonsters();
+        }
+        
+        public System.Threading.Tasks.Task<SmallLabyWpfPlayer.ServiceRefSmallLaby.MonsterInfo[]> GetMonstersAsync() {
+            return base.Channel.GetMonstersAsync();
         }
         
         public SmallLabyWpfPlayer.ServiceRefSmallLaby.ItemInfo[] GetItems() {

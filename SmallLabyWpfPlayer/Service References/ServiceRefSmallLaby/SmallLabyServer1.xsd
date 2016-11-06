@@ -35,6 +35,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="PlayerInfo" nillable="true" type="tns:PlayerInfo" />
+  <xs:complexType name="ArrayOfMonsterInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MonsterInfo" type="tns:MonsterInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMonsterInfo" nillable="true" type="tns:ArrayOfMonsterInfo" />
+  <xs:complexType name="MonsterInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Health" type="xs:int" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonsterInfo" nillable="true" type="tns:MonsterInfo" />
   <xs:complexType name="ArrayOfItemInfo">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemInfo" type="tns:ItemInfo" />
