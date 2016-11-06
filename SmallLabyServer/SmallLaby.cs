@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace SmallLabyServer
 {
@@ -52,7 +53,14 @@ namespace SmallLabyServer
         public ItemInfo[] GetItems()
         {
             return Game.Instance.GoldItems.Select(
-                i => new ItemInfo { Item = Item.Gold, X = i.X, Y = i.Y }).ToArray();
+                i => new ItemInfo { Item = Item.Gold, X = i.X, Y = i.Y }).
+                Concat(new List<ItemInfo> {
+                    new ItemInfo
+                    {
+                        Item = Item.Exit,
+                        X = Game.Instance.Map.FinishX,
+                        Y = Game.Instance.Map.FinishY
+                    } }).ToArray();
         }
 
         public int GetGold(int player_id)

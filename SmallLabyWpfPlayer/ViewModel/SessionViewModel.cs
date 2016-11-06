@@ -32,6 +32,7 @@ namespace SmallLabyWpfPlayer
         private BitmapImage m_mountain_image;
         private BitmapImage m_enemy_image;
         private BitmapImage m_monster_image;
+        private BitmapImage m_exit_image;
 
         private const int size = 50;
         private ClientModel m_model;
@@ -48,6 +49,7 @@ namespace SmallLabyWpfPlayer
             m_mountain_image = CreateBitmapImage("/Images/mud.bmp");
             m_enemy_image    = CreateBitmapImage("/Images/player.bmp");
             m_monster_image  = CreateBitmapImage("/Images/m1.bmp");
+            m_exit_image     = CreateBitmapImage("/Images/finish.bmp");
 
             var timer = new DispatcherTimer();
             timer.Tick += new EventHandler(Update);
@@ -114,8 +116,16 @@ namespace SmallLabyWpfPlayer
                     case ClientModel.ItemType.Gold:
                         AddGold(element.X, element.Y, items);
                         break;
+                    case ClientModel.ItemType.Exit:
+                        AddExit(element.X, element.Y, items);
+                        break;
                 }
             }
+        }
+
+        private void AddExit(int x, int y, ICollection<BaseImageViewModel> items)
+        {
+            items.Add(CreateImageBoxViewModel(x, y, m_exit_image));
         }
 
         private void AddGold(int x, int y, ICollection<BaseImageViewModel> items)

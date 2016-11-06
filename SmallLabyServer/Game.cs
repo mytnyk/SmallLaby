@@ -17,15 +17,12 @@ namespace SmallLabyServer
         public Dictionary<int, Player> Players { get; } = new Dictionary<int, Player>();
         public List<Gold> GoldItems { get; } = new List<Gold>();
 
-        private int m_start_x = 0;
-        private int m_start_y = 0;
-
         public List<Monster> Monsters { get; } = new List<Monster>();
         public int AddPlayer(string name)
         {
             var p = new Player(name);
-            p.X = m_start_x;
-            p.Y = m_start_y;
+            p.X = Map.StartX;
+            p.Y = Map.StartY;
             lock (Players)
             {
                 int player_id = m_current_player_id;
@@ -171,10 +168,10 @@ namespace SmallLabyServer
         private void SetPosition(Player player, int x, int y)
         {
             if (x < 0 || y < 0 ||
-                x >= Instance.Map.Width || y >= Instance.Map.Height)
+                x >= Map.Width || y >= Map.Height)
                 return;
 
-            var terrain = Instance.Map.GetField(x, y);
+            var terrain = Map.GetField(x, y);
             if (terrain != TerrainType.Mountain)
             {
                 player.X = x;
@@ -192,15 +189,20 @@ namespace SmallLabyServer
                 {
                     KillPlayer(player);
                 }
+
+                if (x == Map.FinishX && y == Map.FinishY)
+                {
+                    System.Console.Write("Finish");
+                }
             }
         }
         private void SetPosition(Monster monster, int x, int y)
         {
             if (x < 0 || y < 0 ||
-                x >= Instance.Map.Width || y >= Instance.Map.Height)
+                x >= Map.Width || y >= Map.Height)
                 return;
 
-            var terrain = Instance.Map.GetField(x, y);
+            var terrain = Map.GetField(x, y);
             if (terrain != TerrainType.Mountain)
             {
                 monster.X = x;
@@ -225,8 +227,8 @@ namespace SmallLabyServer
                 GoldItems.Add(new Gold { Amount = gold, X = player.X, Y = player.Y });
                 player.Gold = 0;
             }
-            player.X = m_start_x;
-            player.Y = m_start_y;
+            player.X = Map.StartX;
+            player.Y = Map.StartY;
         }
     }
 }
