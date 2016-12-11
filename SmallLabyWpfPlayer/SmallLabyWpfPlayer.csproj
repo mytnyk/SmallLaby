@@ -37,6 +37,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Numerics.Vectors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
@@ -57,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Map3dConstructor\Map3DConstructor.cs" />
     <Compile Include="Model\ClientModel.cs" />
     <Compile Include="Service References\ServiceRefSmallLaby\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -80,11 +85,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ViewModel\Window3DViewModel.cs" />
     <Compile Include="View\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\SessionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Window3DView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +117,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -143,7 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\aze1.bmp" />
-    <Resource Include="Images\mud.bmp" />
+    <EmbeddedResource Include="Images\mud.bmp" />
     <Resource Include="Images\road.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +164,7 @@
     <Resource Include="Images\grass.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\gold1.png" />
+    <EmbeddedResource Include="Images\gold1.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\m1.bmp" />
@@ -181,6 +192,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\finish.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OlivecDx\OlivecDx.csproj">
+      <Project>{ff131615-ae7c-49b1-b0a8-6e7726848c00}</Project>
+      <Name>OlivecDx</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\GeneticaMortarlessBlocks.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -60,15 +60,16 @@ namespace SmallLabyWpfPlayer
         private int m_player_id;
         private string m_player_name;
         private TerrainType[] m_map;
-        private int m_map_width;
-        private int m_map_height;
+
+      public int MapWidth { get; }
+      public int MapHeight { get; }
 
         public ClientModel()
         {
             m_client = new SmallLabyClient();
             m_map = m_client.GetMap();
-            m_map_width = m_client.GetMapWidth();
-            m_map_height = m_client.GetMapHeight();
+            MapWidth = m_client.GetMapWidth();
+            MapHeight = m_client.GetMapHeight();
             IsConnected = false;
         }
 
@@ -137,11 +138,11 @@ namespace SmallLabyWpfPlayer
         }
         public IEnumerable<Field> GetMap()
         {
-            for (int y = 0; y < m_map_height; y++)
+            for (int y = 0; y < MapHeight; y++)
             {
-                for (int x = 0; x < m_map_width; x++)
+                for (int x = 0; x < MapWidth; x++)
                 {
-                    var field = m_map[y * m_map_width + x];
+                    var field = m_map[y * MapWidth + x];
 
                     Terrain terrain = Terrain.Unknown;
                     switch (field)

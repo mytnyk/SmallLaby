@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="SessionView.xaml"/>
                 <ResourceDictionary Source="InfoView.xaml"/>
+                <ResourceDictionary Source="Window3DView.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
