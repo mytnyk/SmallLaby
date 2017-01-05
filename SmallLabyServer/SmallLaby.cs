@@ -41,17 +41,19 @@ namespace SmallLabyServer
         public void SetMovementStrategy(int player_id, MovementStrategy strategy)
         {
             var player = Game.Instance.GetPlayer(player_id);
-            player.MovementStrategy = strategy;
+            player.PrimaryMovementStrategy = strategy;
         }
 
         public PlayerInfo[] GetPlayers()
         {
+            Console.WriteLine("GetPlayers..." + DateTime.Now);
             return Game.Instance.Players.Select(
                 p => new PlayerInfo { Id = p.Key, X = p.Value.X, Y = p.Value.Y }).ToArray();
         }
 
         public ItemInfo[] GetItems()
         {
+            Console.WriteLine("GetItems..." + DateTime.Now);
             return Game.Instance.GoldItems.Select(
                 i => new ItemInfo { Item = Item.Gold, X = i.X, Y = i.Y }).
                 Concat(new List<ItemInfo> {
@@ -77,6 +79,7 @@ namespace SmallLabyServer
 
         public MonsterInfo[] GetMonsters()
         {
+            Console.WriteLine("GetMonsters..." + DateTime.Now);
             return Game.Instance.Monsters.Select(
                 m => new MonsterInfo { Health = m.Health, X = m.X, Y = m.Y}).ToArray();
         }

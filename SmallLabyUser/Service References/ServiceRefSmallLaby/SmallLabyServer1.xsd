@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SmallLabyServer" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SmallLabyServer" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfTerrainType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TerrainType" type="tns:TerrainType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTerrainType" nillable="true" type="tns:ArrayOfTerrainType" />
+  <xs:simpleType name="TerrainType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Grass" />
+      <xs:enumeration value="Forest" />
+      <xs:enumeration value="Water" />
+      <xs:enumeration value="Mountain" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="TerrainType" nillable="true" type="tns:TerrainType" />
+  <xs:complexType name="ArrayOfPlayerInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="PlayerInfo" type="tns:PlayerInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPlayerInfo" nillable="true" type="tns:ArrayOfPlayerInfo" />
+  <xs:complexType name="PlayerInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PlayerInfo" nillable="true" type="tns:PlayerInfo" />
+  <xs:complexType name="ArrayOfMonsterInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MonsterInfo" type="tns:MonsterInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMonsterInfo" nillable="true" type="tns:ArrayOfMonsterInfo" />
+  <xs:complexType name="MonsterInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Health" type="xs:int" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MonsterInfo" nillable="true" type="tns:MonsterInfo" />
+  <xs:complexType name="ArrayOfItemInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ItemInfo" type="tns:ItemInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfItemInfo" nillable="true" type="tns:ArrayOfItemInfo" />
+  <xs:complexType name="ItemInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Item" type="tns:Item" />
+      <xs:element minOccurs="0" name="X" type="xs:int" />
+      <xs:element minOccurs="0" name="Y" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ItemInfo" nillable="true" type="tns:ItemInfo" />
+  <xs:simpleType name="Item">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Gold" />
+      <xs:enumeration value="Bonus" />
+      <xs:enumeration value="Exit" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="Item" nillable="true" type="tns:Item" />
+  <xs:simpleType name="MovementStrategy">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="StandStill" />
+      <xs:enumeration value="MoveLeft" />
+      <xs:enumeration value="MoveRight" />
+      <xs:enumeration value="MoveUp" />
+      <xs:enumeration value="MoveDown" />
+      <xs:enumeration value="RandomDirection" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MovementStrategy" nillable="true" type="tns:MovementStrategy" />
+</xs:schema>

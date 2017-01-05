@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SmallLaby" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://188.231.153.190:8080/SmallLabyServer?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SmallLabyServer" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISmallLaby_AddPlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlayer" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_AddPlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddPlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_RemovePlayer_InputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePlayer" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_RemovePlayer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RemovePlayerResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetGold_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGold" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetGold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGoldResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMap_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMap" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMap_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetPlayers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayers" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetPlayers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlayersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMonsters_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonsters" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMonsters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMonstersResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetItems_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetItems" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetItems_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetItemsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMapWidth_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapWidth" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMapWidth_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapWidthResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMapHeight_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapHeight" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetMapHeight_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMapHeightResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_SetMovementStrategy_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMovementStrategy" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_SetMovementStrategy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMovementStrategyResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetSpeed_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpeed" />
+  </wsdl:message>
+  <wsdl:message name="ISmallLaby_GetSpeed_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSpeedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISmallLaby">
+    <wsdl:operation name="AddPlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/AddPlayer" message="tns:ISmallLaby_AddPlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/AddPlayerResponse" message="tns:ISmallLaby_AddPlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RemovePlayer">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/RemovePlayer" message="tns:ISmallLaby_RemovePlayer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/RemovePlayerResponse" message="tns:ISmallLaby_RemovePlayer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGold">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetGold" message="tns:ISmallLaby_GetGold_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetGoldResponse" message="tns:ISmallLaby_GetGold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMap">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetMap" message="tns:ISmallLaby_GetMap_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetMapResponse" message="tns:ISmallLaby_GetMap_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetPlayers" message="tns:ISmallLaby_GetPlayers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetPlayersResponse" message="tns:ISmallLaby_GetPlayers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsters">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetMonsters" message="tns:ISmallLaby_GetMonsters_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetMonstersResponse" message="tns:ISmallLaby_GetMonsters_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetItems" message="tns:ISmallLaby_GetItems_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetItemsResponse" message="tns:ISmallLaby_GetItems_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMapWidth">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetMapWidth" message="tns:ISmallLaby_GetMapWidth_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetMapWidthResponse" message="tns:ISmallLaby_GetMapWidth_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMapHeight">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetMapHeight" message="tns:ISmallLaby_GetMapHeight_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetMapHeightResponse" message="tns:ISmallLaby_GetMapHeight_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMovementStrategy">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategy" message="tns:ISmallLaby_SetMovementStrategy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/SetMovementStrategyResponse" message="tns:ISmallLaby_SetMovementStrategy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpeed">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISmallLaby/GetSpeed" message="tns:ISmallLaby_GetSpeed_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISmallLaby/GetSpeedResponse" message="tns:ISmallLaby_GetSpeed_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISmallLaby" type="tns:ISmallLaby">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddPlayer">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/AddPlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemovePlayer">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/RemovePlayer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGold">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetGold" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMap">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetMap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlayers">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetPlayers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMonsters">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetMonsters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItems">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetItems" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMapWidth">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetMapWidth" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMapHeight">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetMapHeight" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMovementStrategy">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/SetMovementStrategy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpeed">
+      <soap:operation soapAction="http://tempuri.org/ISmallLaby/GetSpeed" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SmallLaby">
+    <wsdl:port name="BasicHttpBinding_ISmallLaby" binding="tns:BasicHttpBinding_ISmallLaby">
+      <soap:address location="http://188.231.153.190:8080/SmallLabyServer" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

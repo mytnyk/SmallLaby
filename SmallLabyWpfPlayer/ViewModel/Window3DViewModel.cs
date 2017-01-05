@@ -128,7 +128,6 @@ namespace SmallLabyWpfPlayer
     public D3DImage Surface { get; }
 
     private ICommand _change_color;
-    private ClientModel model;
 
     public ICommand ChangeColorCmd
     {
