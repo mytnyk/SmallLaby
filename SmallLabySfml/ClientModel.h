@@ -1,11 +1,35 @@
 #pragma once
 #include <memory>
 #include <vector>
+#include <string>
 
 enum class Terrain
 {
   Wall,
   Road
+};
+
+enum class MoveStrategy
+{
+  MoveLeft,
+  MoveRight,
+  MoveUp,
+  MoveDown
+};
+
+struct Player
+{
+public:
+  int X;
+  int Y;
+  int Id;
+};
+
+struct Monster
+{
+public:
+  int X;
+  int Y;
 };
 
 class ClientModel
@@ -23,6 +47,12 @@ public:
   ~ClientModel();
   int GetWidth();
   int GetHeight();
+  int AddPlayer(std::string name);
+  void SetMoveStrategy(int player_id, MoveStrategy movestrategy);
   std::vector<std::vector<Terrain>> GetMap();
+  void RemovePlayer(int player_id);
+  void Close();
+  std::vector<Player> GetPlayers();
+  std::vector<Monster> GetMonsters();
 };
 
